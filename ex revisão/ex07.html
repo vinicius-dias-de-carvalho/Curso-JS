@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de Exercício</title>
+    <link rel="stylesheet" href="estilo.css">
+    <style>
+        body{
+            background-color: rgb(37, 180, 246);
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Caixa de Mercado</h1>
+    </header>
+
+    <section>
+        <div>
+            Valor total do Mercado: <input type="number" name="number" id="valorcompra">
+            <button onclick="calculardesconto()">Calcular total</button>
+        </div>
+        <div>
+            <h2 id="res">O valor final vai aparecer aqui ...</h2>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+     <script>
+        function calculardesconto(){
+            let valor = Number(document.getElementById('valorcompra').value)
+            let resultado = document.getElementById('res')
+            let desconto = (valor * 10) / 100
+            let valorfinal = valor - desconto 
+           
+            if(valor >= 100){
+                resultado.innerText = `O valor final com 10% de desconto é ${valorfinal}`
+            }else{
+                resultado.innerText = `O valor final sem desconto é ${valor}`
+            }
+        }
+     </script>
+    
+</body>
+</html>

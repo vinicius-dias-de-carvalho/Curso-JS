@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de Exercício</title>
+    <link rel="stylesheet" href="estilo.css">
+    <style>
+        body{
+            background-color: rgb(37, 180, 246);
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Somador Prático</h1>
+    </header>
+
+    <section>
+        <div>
+            <input type="number" name="n1" id="n1">
+            <input type="number" name="n2" id="n2">
+            <button onclick="somar()">Somar</button>
+        </div>
+        <div >
+           <h2 id="resultado">O resultado vai aparecer aqui...</h2>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+    <script>
+        function somar(){
+            let num1 = Number(document.getElementById('n1').value)
+            let num2 = Number(document.getElementById('n2').value)
+            let result = document.getElementById('resultado')
+            let resultado = num1 + num2
+            
+            
+            result.innerText = `A soma entre ${num1} e ${num2}  é ${resultado} `
+
+        }
+
+    </script>
+    
+</body>
+</html>

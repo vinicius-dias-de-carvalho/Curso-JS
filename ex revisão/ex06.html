@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de Exercício</title>
+    <link rel="stylesheet" href="estilo.css">
+    <style>
+        body{
+            background-color: rgb(37, 180, 246);
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Verificador de Situação Eleitoral </h1>
+    </header>
+
+    <section>
+        <div>
+            Digite sua idade: <input type="number" name="number" id="txtidade">
+            <button onclick="checarVoto()">Verificar Voto</button>
+        </div>
+        <div>
+            <h2 id="res"></h2>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+    <script>
+        function checarVoto(){
+            let idade = Number(document.getElementById('txtidade').value)
+            let resultado = document.getElementById('res')
+            if(idade < 16 ){
+                resultado.innerText = 'Não vota!'
+
+            }else if(idade < 18 || idade >= 70){
+                    resultado.innerText = 'Voto opcional!'
+            }else{
+                resultado.innerText = 'voto obrigatorio'
+            }
+        }
+    </script>
+    
+</body>
+</html>

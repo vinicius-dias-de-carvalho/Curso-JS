@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de Exercício</title>
+    <link rel="stylesheet" href="estilo.css">
+    <style>
+        body{
+            background-color: rgb(37, 180, 246);
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Calculando medidas</h1>
+    </header>
+
+    <section>
+        <div>
+            nota1: <input type="number" name="number" id="nota1"><br><br>
+            nota2: <input type="number" name="number" id="nota2"><br><br>
+            <button onclick="calcular()">Calcular Média</button>
+        </div>
+        <div>
+             <h2 id="res">Sua média vai aparecer aqui...</h2>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+    <script>
+        function calcular(){
+            let n1 = Number(document.getElementById('nota1').value)
+            let n2 = Number(document.getElementById('nota2').value)
+            let resultado = document.getElementById('res')
+            let media = (n1 + n2) / 2
+
+            if( media >= 7){
+               resultado.innerText = `sua media foi ${media} Voce esta Aprovado!`
+            }else{
+                resultado.innerText = `Sua media foi ${media} Voce foi Reprovado`
+            }
+        }
+    </script>
+    
+</body>
+</html>

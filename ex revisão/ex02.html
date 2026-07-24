@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de Exercício</title>
+    <link rel="stylesheet" href="estilo.css">
+    <style>
+        body {
+            background-color: rgb(61, 166, 247);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+       <h1 id="res">agaurdando nome...</h1>
+       <input type="text" name="nome" id="txtnome">
+       <button onclick="cumprimentar()">Enviar</button>
+    </header>
+
+    <section>
+        <div>
+            
+        </div>
+        <div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+   <script>
+    function cumprimentar(){
+        let caixa = document.getElementById('txtnome')
+        let titulo = document.getElementById('res')
+       let nome = caixa.value
+       titulo.innerText = (`Olá, ${nome}! seja bem-vindo`)
+
+    }
+   </script>
+    
+</body>
+</html>
