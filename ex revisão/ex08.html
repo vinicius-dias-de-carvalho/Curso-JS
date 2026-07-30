@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de Exercício</title>
+    <link rel="stylesheet" href="estilo.css">
+    <style>
+        body{
+            background-color: rgb(37, 180, 246);
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Loja do dev</h1>
+    </header>
+
+    <section>
+        <div>
+            Valor da compra (R$): <input type="number" name="number" id="valorPedido">
+            <button onclick="calcularFrete()">Calcular Total</button>
+        </div>
+        <div>
+            <h2 id="res">O resultado vai aparecer aqui...</h2>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+    <script>
+        function calcularFrete(){
+            let valor = Number(document.getElementById('valorPedido').value)
+            let resultado = document.getElementById('res')
+            
+            if (valor >= 150){
+            resultado.innerText = `Frete GRATIS Total a pagar: R$ ${valor}`
+        } else {
+            let total = valor + 20
+           resultado.innerText = `Frete de R$ 20,00. total a pagar:R$ ${total}`
+        }
+        }
+    </script>
+    
+</body>
+</html>

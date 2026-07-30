@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de Exercício</title>
+    
+    <style>
+        body{
+            background-color: rgb(37, 180, 246);
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Cinema Dev</h1>
+    </header>
+
+    <section>
+        <div>
+            Digite sua idade: <input type="number" name="number" id="idadePessoa">
+            <button onclick="verificarIngresso()">Vrificar Preço</button>
+
+        </div>
+        <div>
+            <h2 id="res">O valor do ingresso vai aparecer aqui...</h2>
+        </div>  
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+     
+    <script>
+        function verificarIngresso(){
+            let idade = Number(document.getElementById('idadePessoa').value)
+            let res = document.getElementById('res')
+            let precoInteiro = 40
+            if (idade < 18 || idade > 60){
+                let meia = precoInteiro / 2
+                res.innerText = `Voce tem direito à Meia-Entrada! valor: R$ ${meia}`
+
+
+            }else{
+                res.innerText = `Ingresso Inteiro valor: R$ ${precoInteiro}`
+            }
+
+        }
+    </script>
+    
+</body>
+</html>
