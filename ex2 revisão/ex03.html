@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de Exercício</title>
+    <style>
+        body{
+            background-color: rgb(37, 180, 246);
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Analisador par impar</h1>
+    </header>
+
+    <section>
+        <div>
+            <input id="txti">
+            <input id="txtf">
+            <button onclick="analisar()">Analisar</button>
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+    <script>
+        function analisar(){
+            let inicio = Number(document.getElementById('txti').value)
+            let fim = Number(document.getElementById('txtf').value)
+            let resultado = document.getElementById('res')
+            let c = inicio
+            resultado.innerText = ''
+            while(c <= fim){
+                
+              if(c % 2 === 0){
+                 resultado.innerText += `${c} = é Par\n`
+              }else{
+                resultado.innerText += `${c} é impar\n`
+              }
+              c++
+              
+            }
+
+        }
+    </script>
+    
+</body>
+</html>

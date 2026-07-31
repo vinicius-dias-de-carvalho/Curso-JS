@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de Exercício</title>
+    <style>
+        body{
+            background-color: rgb(37, 180, 246);
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Clube Dev FC</h1>
+    </header>
+
+    <section>
+        <div>
+            Digite idade do jogador: <input type="number" name="number" id="idadeJogador">
+            <button onclick="classificarAtleta()">Verificar Categorias</button>
+        </div>
+        <div>
+           <h2 id="res">A categória vai aparecer aqui...</h2>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+      <script>
+        function classificarAtleta(){
+            let idade = Number(document.getElementById('idadeJogador').value)
+            let resultado = document.getElementById('res')
+            if(idade < 16){
+                resultado.innerText = 'Categoria:Infantil'
+            }else if (idade <= 30){
+                resultado.innerText = 'Categoria: Profissional'
+            }else{
+                resultado.innerText = 'Categoria: Master'
+            }
+
+        }
+      </script>
+    
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de Exercício</title>
+    <style>
+        body{
+            background-color: rgb(37, 180, 246);
+            
+        }
+        #res{
+           display: flex;
+           max-height: 200px;
+           overflow-y: auto;
+           
+           align-items: flex-start;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>O Contador Inteligente</h1>
+    </header>
+
+    <section>
+        <div>
+            <input id="txti">
+            <input id="txtf">
+            <input id="txtp">
+            <button onclick="contar()">Contador</button>
+        </div>
+        <div id="res">
+           
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+   <script>
+    function contar(){
+        let inicio = Number(document.getElementById('txti').value)
+        let fim = Number(document.getElementById('txtf').value)
+        let passo = Number(document.getElementById('txtp').value)
+        let resultado = document.getElementById('res')
+        let c = inicio
+        resultado.innerText =''
+        if (passo <= 0){
+            passo = 1
+            
+        }
+        while(c <= fim){
+            resultado.innerText += `${c}-`
+            c+= passo
+        }
+
+    }
+   </script>
+    
+</body>
+</html>

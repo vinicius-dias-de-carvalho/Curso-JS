@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de Exercício</title>
+    <style>
+        body{
+            background-color: rgb(37, 180, 246);
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Calculadora de IMC</h1>
+    </header>
+
+    <section>
+        <div>
+            Peso (Kg): <input type="number" name="number" id="peso"><br><br>
+            Altura (ex:1.80): <input type="number" name="number" step="0.01" id="altura"><br><br>
+
+            <button onclick="calcularIMC()">Calcular IMC</button>
+        </div>
+        <div>
+            <h2 id="res">Preencha os dados e clique no botão.</h2>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+     <script>
+        function calcularIMC(){
+            let peso = Number(document.getElementById('peso').value)
+            let altura = Number(document.getElementById('altura').value)
+            let resultado = document.getElementById('res')
+            let imc = peso / (altura * altura)
+            if (imc < 18.5){
+                resultado.innerText =`IMC: ${imc.toFixed(1)}- Abaixo do peso`
+            }else if (imc <= 24.9){
+                resultado.innerText = `IMC:  ${imc.toFixed(1)} - Peso normal`
+            }else if(imc <= 29.9){
+                resultado.innerText = `IMC: ${imc.toFixed(1)} - Sobrepeso`
+            }else{
+                resultado.innerText = `IMC: ${imc.toFixed(1)} - Obesidade`
+            }
+        }
+     </script>
+    
+</body>
+</html>

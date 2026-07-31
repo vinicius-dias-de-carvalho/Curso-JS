@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de Exercício</title>
+    <style>
+        body{
+            display: flex;
+            background-color: rgb(37, 180, 246);
+            text-align: center;
+            flex-direction: column;
+        }
+        table{
+            padding: 8px;
+            border: 3px solid black;
+            
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Tabuada</h1>
+    </header>
+
+    <section>
+        <div>
+            Digite um numero: <input type="number" name="number" id="tabutxt">
+           <button onclick="gerartabuada()">Gerar tabuada</button>
+           <br><br>
+          <table id="res"></table>
+           
+        </div>
+        <div>
+            
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+     <script>
+        function gerartabuada(){
+            let tabuada = Number(document.getElementById('tabutxt').value)
+            let c = 1
+            let tabela = document.getElementById('res')
+
+            tabela.innerHTML = ''
+
+            while(c <= 10){
+             let mult = tabuada * c
+             tabela.innerText +=`${tabuada} x ${c} = ${mult}\n`
+             c++
+            }
+        }
+     </script>
+    
+</body>
+</html>

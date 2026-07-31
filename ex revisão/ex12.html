@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de Exercício</title>
+    <style>
+        body{
+            background-color: rgb(37, 180, 246);
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Contador de Passos</h1>
+    </header>
+
+    <section>
+        <div>
+            <button onclick="contar()">Iniciar Contagem</button>
+        </div>
+        <div>
+             <h2 id="res">Clique no botão para contar os passos.</h2>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+    <script>
+        function contar(){
+          let resultado = document.getElementById('res')
+          let passo = 1
+          while (passo <= 10){
+            resultado.innerText += `${passo}-`
+             passo++
+          }
+        }
+    </script>
+    
+</body>
+</html>
