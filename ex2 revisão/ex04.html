@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de Exercício</title>
+    <style>
+        body{
+            background-color: rgb(37, 180, 246);
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>O Gerador de Mútiplos</h1>
+    </header>
+
+    <section>
+        <div>
+         Inicio:<input type="number" id="txti">
+        Fim: <input type="number" id="txtf">
+        Multiplo:<input type="number" id="txtm">
+           
+        <button onclick="gerar()">Gerar</button>
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+   
+   <script>
+    function gerar(){
+        let txti = document.getElementById('txti')
+        let txtf =  document.getElementById('txtf')
+        let txtm = document.getElementById('txtm')
+        let resultado = document.getElementById('res')
+        
+        
+
+        if(txti.value.length ===  0|| txtf.value.length === 0 || txtm.value.length === 0){
+              window.alert ('[ERRO] Preencha todos os campos!')
+        }else{
+            let inicio = Number(txti.value)
+            let fim = Number(txtf.value)
+            let mult = Number(txtm.value)
+              
+            let c = inicio
+
+            resultado.innerHTML = ''
+           
+            while(c <= fim){
+               
+               if(c % mult === 0) {
+                resultado.innerText += `${c} 🎯\n`
+               
+               }
+                c++
+            }
+        }
+    }
+   </script>
+    
+</body>
+</html>
