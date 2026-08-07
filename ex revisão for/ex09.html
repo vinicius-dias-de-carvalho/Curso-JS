@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de Exercício</title>
+    <style>
+        body{
+            background-color: rgb(37, 180, 246);
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>A Tabuada do Usuário</h1>
+    </header>
+
+    <section>
+        <div>
+            <input type="number" name="number" id="txtd">
+            <button onclick="gerar()">Gerar Tabuada</button>
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+     <script>
+        function gerar(){
+            let txtd = document.getElementById('txtd')
+            let res = document.getElementById('res')
+
+            if(txtd.value.length === 0){
+                alert ('[ERRO] Preencha o campo.')
+
+
+            }else{
+                 let d = Number(txtd.value)
+                
+                 res.innerText = ''
+                   
+                 for(let c = 1;c <= 10; c++){
+                    
+                    let r = d * c
+                    
+                    res.innerText += `${d} x ${c} = ${r} \n `
+
+                 }
+            }
+        }
+     </script>
+    
+</body>
+</html>

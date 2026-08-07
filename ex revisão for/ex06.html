@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de Exercício</title>
+    <style>
+        body{
+            background-color: rgb(37, 180, 246);
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Contagem regressiva para o Foguete</h1>
+    </header>
+
+    <section>
+        <div>
+            <input type="number" name="number" id="numero">
+            <button onclick="comecar()">Começar</button>
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+   
+    <script>
+        function comecar(){
+            let num = document.getElementById('numero')
+            let res = document.getElementById('res')
+
+            if(num.value.length === 0){
+                alert ('[ERRO] Digite um numero para continuar!')
+            }else{
+                let numero = Number(num.value)
+                let c = numero
+                res.innerText = ''
+
+                while(c >= 0){
+                    res.innerText += `${c} \n`
+                    c--
+                    }
+                    
+
+                res.innerText += 'Decolar'
+            }
+            
+        }
+        
+    </script>
+    
+</body>
+</html>

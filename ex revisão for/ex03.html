@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de Exercício</title>
+    <style>
+        body{
+            background-color: rgb(37, 180, 246);
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>A tabuada</h1>
+    </header>
+
+    <section>
+        <div>
+            <input type="number" name="number" id="txtn">
+            <button onclick="gerar()">Gerartabuada</button>
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+    <script>
+        function gerar(){
+            let txtn = document.getElementById('txtn')
+            let res = document.getElementById('res')
+
+            if(txtn.value.length === 0){
+                alert ('[ERRO] Preencha os campos corretamente.')
+
+            }else{
+                let n = Number(txtn.value)
+                res.innerText = ''
+
+                for(let c = 1; c <= 10; c++){
+                    let r = n * c
+                    res.innerText += `${n} x ${c} = ${r}\n`
+                }
+
+            }
+        }
+    </script>
+
+    
+</body>
+</html>

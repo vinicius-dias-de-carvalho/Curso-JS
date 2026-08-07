@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de Exercício</title>
+    <style>
+        body{
+            background-color: rgb(37, 180, 246);
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Contador com passos</h1>
+    </header>
+
+    <section>
+        <div>
+            <input type="number" name="number" id="txti">
+            <input type="number" name="number" id="txtf">
+            <input type="number" name="number" id="txtp">
+            <button onclick="contar()">Contar</button>
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+    <script>
+        function contar(){
+        let txti = document.getElementById('txti')
+        let txtf = document.getElementById('txtf')
+        let txtp = document.getElementById('txtp')
+        let res = document.getElementById('res')
+
+        if(txti.value.length === 0 || txtf.value.length === 0 || txtp.value.length === 0){
+            alert ('[ERRO] preencha corretamente os campos.')
+        }else{
+            let i = Number(txti.value)
+            let f = Number(txtf.value)
+            let p = Number(txtp.value)
+
+            res.innerText = ''
+            
+            for(let c = i; c <= f; c += p){
+                res.innerText += `${c} -`
+            }
+            res.innerText += 'Fim'
+        }
+    }    
+    </script>
+    
+</body>
+</html>
