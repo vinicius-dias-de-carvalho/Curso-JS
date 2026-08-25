@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculador de Desconto</title>
+    <style>
+        body{
+            background-color: rgb(37, 180, 246);
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Calculador de Desconto (10%)</h1>
+    </header>
+
+    <section>
+        <div>
+            <input type="number" name="number" id="txtpreco" placeholder="Ex: 100"><br><br>
+            <button onclick="processardesconto()">Calcular desconto</button>
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+   <script>
+    function calculardesconto(preco){
+        let re = preco * 0.9
+
+        return re
+    }
+
+    function processardesconto(){
+      let p = Number(document.getElementById('txtpreco').value)
+      let resultado = document.getElementById('res')
+
+      let final = calculardesconto(p)
+
+      resultado.innerText = `o preço com desconto é ${final}`
+    }
+   </script>
+    
+</body>
+</html>

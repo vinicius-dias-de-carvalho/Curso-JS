@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semáforo inteligente</title>
+    <style>
+        body{
+            background-color: black;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Semáforo inteligente</h1>
+    </header>
+
+    <section>
+        <div>
+            <input type="text" name="text" id="txtcor">
+            <button onclick="checarSinal()">Checar sinal</button>
+        </div>
+        <div id="resultado">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+   <script>
+    function checarSinal(){
+        let cor = document.getElementById('txtcor').value
+        let resultado = document.getElementById('resultado')
+
+        if(cor === 'verde'){
+            resultado.style.color = 'green'
+            resultado.innerText = "siga em frente"
+        }else if(cor === 'amarelo'){
+            resultado.style.color = 'gold'
+            resultado.innerText = "[ATENÇÃO]! Reduza a velocidade."
+        }else if(cor === 'vermelho'){
+           resultado.style.color = 'red'
+           resultado.innerText = "[PARE]! Sinal vermelho." 
+        }
+        else{
+            resultado.style.color = 'gray'
+            resultado.innerText = "Cor invalida! Digite verde, amarelo ou vermelho"
+
+        }
+    }
+   </script>
+    
+</body>
+</html>

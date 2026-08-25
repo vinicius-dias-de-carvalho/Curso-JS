@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo de Exercício</title>
+    <style>
+        body{
+            background-color: black;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Loja</h1>
+    </header>
+
+    <section>
+        <div>
+            <input type="number" name="number" id="txtpreco">
+            <button onclick="calcular()">clicar</button>
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+    <script>
+        function calcularfrete(preco){
+            if(preco >= 100){
+                return 0 
+            }else{
+               return 15
+            }
+          
+        }    
+    
+            function calcular(){
+                let preço = Number(document.getElementById('txtpreco').value)
+                let resultado = document.getElementById('res')
+
+                valorfrete = calcularfrete(preço)
+
+                if(valorfrete === 0){
+                    resultado.innerText = 'Parabens! Seu frete é GRÁTIS'
+                    resultado.style.color = 'green'
+                }else{
+                    resultado.innerText = `O valor do frete é R$ ${valorfrete},00 `
+                    resultado.style.color = 'red'
+                }
+            }
+        
+        
+    </script>
+    
+</body>
+</html>

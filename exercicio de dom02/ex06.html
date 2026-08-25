@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checando Turno de Estudo</title>
+    <style>
+        body{
+            background-color:black;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Checagem de turno de estudo.</h1>
+    </header>
+
+    <section>
+        <div>
+            <input type="text" name="text" id="txtchec">
+            <button onclick="checarTurno()">Checar turno</button>
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+       <script>
+        function checarTurno(){
+            let turno = document.getElementById('txtchec').value.toLowerCase()
+            let resultado = document.getElementById('res')
+            
+            if(turno === 'm'){
+                resultado.style.color = '#DAA520'
+                resultado.innerText = "Bom Dia! Turno Matutino."
+            }else if(turno === 'v'){
+                resultado.style.color = 'orange'
+                resultado.innerText = "Boa Tarde! Turno Vespertino."
+            }else if(turno === 'n'){
+                resultado.style.color = 'dodgerblue'
+                resultado.innerText = "Boa Noite! Turno Noturno."
+            }else{
+                resultado.style.color = 'red'
+                resultado.innerText = "Turno Inválido! Digite M, V ou N."
+            }
+
+
+        }
+       </script>
+    
+</body>
+</html>

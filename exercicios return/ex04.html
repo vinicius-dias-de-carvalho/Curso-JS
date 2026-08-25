@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de medida</title>
+    <style>
+        body{
+            background-color: rgb(37, 180, 246);
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Conversor de Metros pra Centímetros</h1>
+    </header>
+
+    <section>
+        <div>
+            <input type="number" name="number" id="txtmetros" placeholder="Ex: 1.80">
+            <button onclick="mostrarConversao()">Converter</button>
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+    <script>
+        function convertaparacentimentros(metros){
+            let resultado =  metros * 100
+            return resultado
+        }
+
+        function mostrarConversao(){
+           let m = Number(document.getElementById('txtmetros').value)
+           let resultado = document.getElementById('res')
+
+           let mostrar = convertaparacentimentros(m)
+
+           resultado.innerText = `${m} metros equivalem a ${mostrar} centimetros`
+
+        }
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Cupom</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #121212;
+            color: white;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            width: 180px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            text-align: center;
+            margin: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007acc;
+            color: white;
+            margin-top: 10px;
+        }
+        #resultado {
+            font-size: 22px;
+            margin-top: 25px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Caixa da Loja Dev</h2>
+    
+    <!-- Input 1: Valor em R$ -->
+    <input type="number" id="txtvalor" placeholder="Valor da compra (R$)"><br>
+
+    <!-- Input 2: Texto do Cupom -->
+    <input type="text" id="txtcupom" placeholder="Cupom (ex: DEV10)"><br>
+    
+    <button onclick="calcular()" > Calcular Total </button>
+
+<p id="resultado">Digite os dados acima...</p>
+
+    <script>
+       function calcular(){
+        let valor = Number(document.getElementById('txtvalor').value )
+        let cupom = document.getElementById('txtcupom').value
+        let resultado = document.getElementById('resultado')
+        
+         
+         let valorfinal  = valor
+        
+
+        if(cupom === 'dev10' ){
+           valorfinal = valor - (valor * 0.10)
+       
+        }
+        
+        else if(cupom === 'super20'){
+          valorfinal  = valor - (valor * 0.20)
+        
+        }else{
+            valorfinal = valor
+         
+        }
+        
+        if(valorfinal >= 100){
+            resultado.style.color = 'green'
+            resultado.innerText = `Total: R$ ${valorfinal.toFixed(2)} - Frete Grátis! `
+        }else{
+            resultado.style.color = '#F0F8FF'
+            resultado.innerText = `Total: R$ ${valorfinal.toFixed(2)} - Frete Grátis acima de R$ 100 `
+        }
+           
+       }
+    </script>
+</body>
+</html>

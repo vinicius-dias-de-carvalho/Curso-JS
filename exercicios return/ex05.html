@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculador de Dobro</title>
+    <style>
+        body{
+            background-color: rgb(37, 180, 246);
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Calculador de Dobro</h1>
+    </header>
+
+    <section>
+        <div>
+            <input type="number" name="number" id="txtnum" placeholder="Ex: 8"><br><br>
+            <button onclick="processardobro()">Calcular Dobro</button>
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+   <script>
+    function calculardobro(numero){
+        let calcular = numero * 2
+        
+        return calcular
+          
+    }
+
+    function processardobro(){
+        let n = Number(document.getElementById('txtnum').value)
+        let resultado = document.getElementById('res')
+
+        let cal = calculardobro(n)
+
+        resultado.innerText = `O Dobro de ${n} é ${cal}`
+    }
+   </script>
+    
+</body>
+</html>

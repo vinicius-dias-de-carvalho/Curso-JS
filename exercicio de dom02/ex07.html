@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IMC Simplificada</title>
+    <style>
+        body{
+            background-color: black;
+            text-align: center;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Checador de Categoria IMC</h1>
+    </header>
+
+    <section>
+        <div class="container">
+            <input type="number" name="number" id="txtimc" placeholder="Digite o IMC">
+            <BUTTon onclick="checarIMC()">Verificar categoria</BUTTon>
+            
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+    <script>
+        function checarIMC(){
+            let imc = Number(document.getElementById('txtimc').value)
+            let resultado = document.getElementById('res')
+            
+            if(imc < 18.5){
+                resultado.style.color = 'orange'
+                resultado.innerText = 'Abaixo do peso'
+            }else if(imc < 25 ){
+               resultado.style.color = 'green'
+               resultado.innerText = "Peso normal"
+
+            }else if(imc < 30){
+                resultado.style.color = '#DAA520'
+                resultado.innerText = 'Sobrepeso'
+
+            }else{
+                resultado.style.color = 'red'
+                resultado.innerText = "Obesidade"
+            }
+        }
+    </script>
+    
+</body>
+</html>
