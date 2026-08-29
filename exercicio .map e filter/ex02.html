@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Aumento de Preço</title>
+    <style>
+        body{
+            background-color: gray;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>O Aumento de Preço</h1>
+    </header>
+
+    <section>
+        <div>
+            <input type="number" name="number" id="txtpreco" placeholder="Ex: 50"><br><br>
+            <button onclick="processaraumento()">Calcular Novo Preço</button>
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+    <script>
+         function adicionaraumento(aumento){
+            let adicionar = aumento.map(item => item + 10)
+            return adicionar
+        }
+
+        function processaraumento(){
+            let n = Number(document.getElementById('txtpreco').value)
+            let resultado = document.getElementById('res')
+
+            let resultadofinal = adicionaraumento([n])
+
+            resultado.innerText = `a lista original: ${n} | a lista dobrada ${resultadofinal}`
+        }
+    </script>
+    
+</body>
+</html>
+
+       
+     

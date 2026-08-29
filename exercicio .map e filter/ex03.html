@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triplo em Lista</title>
+    <style>
+        body{
+            background-color: gray;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Triplicar Valor na Lista</h1>
+    </header>
+
+    <section>
+        <div>
+            <input type="number" name="number" id="txtnum" placeholder="Ex: 7"><br><br>
+
+            <button onclick="processartriplo()">Triplicar</button>
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+    <script>
+        function triplicarlista(lista){
+        let triplo = lista.map(item => item * 3)
+        return triplo
+
+        }
+
+        function dobrarlista(dobro){
+            let dobrar = dobro.map(item => item * 2)
+            return dobrar
+        }
+
+        function processartriplo(){
+            let n = Number(document.getElementById('txtnum').value)
+            let resultado = document.getElementById('res')
+            let valortriplo = triplicarlista([n])
+            let valordobro = dobrarlista([n])
+
+            let soma = Number(valortriplo[0]) + Number(valordobro[0])
+            
+
+            resultado.innerText = `triplo é ${valortriplo}| o dobro é  : ${valordobro}| soma : ${soma}`
+        
+        }
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treino de Map</title>
+    <style>
+        body{
+            background-color: rgb(37, 180, 246);
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Treino de Map</h1>
+    </header>
+
+    <section>
+        <div>
+            <input type="number" name="number" id="txtnum">
+            <button onclick="processarlista()">Dobrar lista</button>
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+    <script>
+        function dobrarlista(lista) {
+            let listadobrada = lista.map(item => item * 2)
+            return listadobrada
+        }
+
+        function processarlista() {
+            let n = Number(document.getElementById('txtnum').value)
+            let resultado = document.getElementById('res')
+            let listafinal = dobrarlista([n])
+            resultado.innerText = `lista original: ${n} | lista dobrada ${listafinal}`
+        }
+    </script>
+    
+</body>
+</html>

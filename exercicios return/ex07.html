@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculador de Metade</title>
+    <style>
+        body{
+            background-color: rgb(37, 180, 246);
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Calculador de Metade</h1>
+    </header>
+
+    <section>
+        <div>
+            <input type="number" name="number" id="txtnum" placeholder="Ex: 50"><br><br>
+            <button onclick="processarmetade()">Calcular Metade</button>
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+     <script>
+        function calcularmetade(metade){
+            let calcular = metade /2 
+            
+            return calcular
+        }
+
+        function processarmetade(){
+            let n = Number(document.getElementById('txtnum').value)
+            let resultado = document.getElementById('res')
+
+            let calculo = calcularmetade(n)
+
+            resultado.innerText = `A metade de ${n} é ${calculo}`
+        }
+     </script>
+    
+</body>
+</html>
