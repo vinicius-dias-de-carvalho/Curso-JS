@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtro VIP</title>
+    <style>
+        body{
+            background-color: gray;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Produtos Acima de R$ 50</h1>
+    </header>
+
+    <section>
+        <div>
+            <button onclick="processarfiltro()">Filtrar produtos VIP</button>
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+       <script>
+        function filtrarprodutosvip(filtro){
+          let vip = filtro.filter(item => item > 50)
+          return vip
+        }
+
+        function processarfiltro(){
+            let lista = [20, 60, 15, 80, 100]
+            let resultado = document.getElementById('res')
+
+            let resultadofinal = filtrarprodutosvip(lista)
+
+            resultado.innerText = `${resultadofinal}`
+        }
+       </script>
+    
+</body>
+</html>

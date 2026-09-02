@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combo Filter + Map</title>
+    <style>
+        body{
+            background-color: gray;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Produtos Acima de R$ 50 com R$ 20 de Desconto</h1>
+    </header>
+
+    <section>
+        <div>
+            <button onclick="processarpromocao()">Aplicar Promoção VIP</button>
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+    <script>
+        function filtrarepromocao(filtro){
+             let filtragem = filtro.filter(item => item > 50).map(item => item - 20)
+                          
+               return filtragem
+            }    
+
+        function processarpromocao(){
+            let preco = [100, 30, 200, 40, 500]
+            let resultado = document.getElementById('res')
+
+            let resultadofinal = filtrarepromocao(preco)
+
+
+            resultado.innerText = `${resultadofinal}`
+        }
+    </script>
+    
+</body>
+</html>

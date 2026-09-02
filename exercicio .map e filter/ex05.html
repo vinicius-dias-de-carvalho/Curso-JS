@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Frete</title>
+    <style>
+        body{
+            background-color: gray;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Frete do Carrinho (+ R$ 5 em cada item)</h1>
+    </header>
+
+    <section>
+        <div>
+            <button onclick="processarcarrinho()">Calcular Frete dos Produtos</button>
+            
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+    <script>
+         
+        
+        function adicionarfrete(frete){
+            let add = frete.map(item => item + 5)
+            return add
+        }
+
+        function processarcarrinho(){
+            let carrinho = [10, 20, 30] 
+            let resultado = document.getElementById('res')
+
+            let valorfinal = adicionarfrete(carrinho)
+
+            resultado.innerText = `${valorfinal}`
+
+        }
+    </script>
+    
+</body>
+</html>

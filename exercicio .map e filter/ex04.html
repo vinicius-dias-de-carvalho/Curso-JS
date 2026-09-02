@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Desconto</title>
+    <style>
+        body{
+            background-color: gray;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Aplicar Cupom (- R$ 15)</h1>
+    </header>
+
+    <section>
+        <div>
+            <input type="number" id="txtpreco" placeholder="Ex: 80"><br><br>
+            <button onclick="processardesconto()">Aplicar desconto</button>
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+    <script>
+        function aplicardesconto(preco){
+            let desconto = preco.map(item => item - 15)
+            return desconto
+        }
+
+        function processardesconto(){
+          let p = Number(document.getElementById('txtpreco').value)
+          let resultado = document.getElementById('res')
+
+          let valorfinal = aplicardesconto([p])
+
+          resultado.innerText = `O preço com desconto é ${valorfinal} `
+        }
+    </script>
+    
+</body>
+</html>
