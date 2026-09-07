@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado Livre - Cupom 10%</title>
+    <style>
+        body{
+            background-color: gray;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Novos Preços com Cupom de 10% OFF</h1>
+    </header>
+
+    <section>
+        <div>
+            <button onclick="processarcarrinho()">Aplicar Cupom</button>
+            
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+
+    <script>
+        function aplicardesconto(des){
+            let desconto = des.map(item => item.preco * 0.9)
+           return desconto
+        }
+
+        function processarcarrinho(){
+        let carrinho = [
+        { produto: "Teclado Mechanical", preco: 200 },
+        { produto: "Mouse Gamer", preco: 100 },
+        { produto: "Mousepad XL", preco: 50 }
+         ]
+        
+        let resultado = document.getElementById('res')
+
+        let valorfinal = aplicardesconto(carrinho)
+
+         resultado.innerText = `${valorfinal}`
+        }
+    </script>
+
+    
+</body>
+</html>

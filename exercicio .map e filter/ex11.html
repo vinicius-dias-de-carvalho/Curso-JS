@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 2 - Frete Games</title>
+    <style>
+        body{
+            background-color: gray;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Preço dos Games com R$ 15 de Frete</h1>
+    </header>
+
+    <section>
+        <div>
+            <button onclick="processarcarrinho()">Calcular Frete</button>
+        </div>
+        <div id="res"> 
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+   <script>
+    function calcularfretegames(ga){
+        let calcular = ga.filter(item => item.categoria === "games" ).map(item => item.preco + 15)
+
+        return calcular
+    }
+
+
+    function processarcarrinho(){
+        let carrinho = [
+        { nome: "Mousepad XL", preco: 50, categoria: "acessorios" },
+       { nome: "Jogo GTA V", preco: 80, categoria: "games" },
+        { nome: "Cadeira Escritorio", preco: 400, categoria: "móveis" },
+        { nome: "Jogo Elden Ring", preco: 200, categoria: "games" } 
+    ]
+
+    let resultado = document.getElementById('res')
+
+     let resultadofinal = calcularfretegames(carrinho)
+
+        resultado.innerText = `O frete é ${resultadofinal}`
+    }
+   </script>
+    
+</body>
+</html>

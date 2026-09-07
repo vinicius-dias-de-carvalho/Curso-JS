@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 1 - Estoque<</title>
+    <style>
+        body{
+            background-color: gray;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Produtos Disponíveis para Compra</h1>
+    </header>
+
+    <section>
+        <div>
+            <button onclick="processarestoque()">Ver Disponíveis</button>
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+    <script>
+        function filtrardisponiveis(es){
+          let estocado = es.filter(item => item.estoque === true).map(item => item.nome)   
+          
+          return estocado
+        }
+
+        function processarestoque(){
+         let produtos = [
+        { nome: "Placa de Vídeo RTX 3060", estoque: true },
+        { nome: "Processador Ryzen 5", estoque: false },
+        { nome: "Memória RAM 16GB", estoque: true },
+        { nome: "Fonte 600W", estoque: false }
+         ]
+
+        let resultado = document.getElementById('res')
+
+        let resultadofinal = filtrardisponiveis(produtos)
+
+        resultado.innerText = `${resultadofinal}`
+        }
+    </script>
+    
+</body>
+</html>

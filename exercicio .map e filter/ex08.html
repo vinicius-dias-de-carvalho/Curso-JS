@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steam - Jogos Baratos</title>
+    <style>
+        body{
+            background-color: gray;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Jogos Baratos (Abaixo de R$ 100)</h1>
+    </header>
+
+    <section>
+        <div>
+            <button onclick="processarloja()">Buscar Promoções</button>
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+     <script>
+        function filtrarjogosbaratos(jogo){
+          let selecionar = jogo.filter(jogo => jogo.preco < 100).map(jogo => jogo.nome)
+
+          return selecionar
+        }
+        
+        function processarloja(){
+           let jogos = [
+           { nome: "Counter-Strike 2", preco: 0 },
+           { nome: "Elden Ring", preco: 230 },
+           { nome: "Terraria", preco: 20 },
+           { nome: "Cyberpunk 2077", preco: 150 }
+         ]
+         
+         let resultado = document.getElementById('res')
+
+         let valorfinal = filtrarjogosbaratos(jogos)
+
+         resultado.innerText = `${valorfinal}`
+
+        }
+     </script>
+    
+</body>
+</html>
