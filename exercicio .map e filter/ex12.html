@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 1 - Avaliações</title>
+    <style>
+        body{
+            background-color: gray;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Produtos Mais Bem Avaliados</h1>
+    </header>
+
+    <section>
+        <div>
+            <button onclick="processaravaliacoes()">Ver Destaques</button>
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+      <script>
+        function filtrarmelhores(fr){
+            let filtrar = fr.filter(item => item.nota >= 4).map(item => "[DESTAQUE] " + item.nome)
+            
+            return filtrar 
+        }
+
+        function processaravaliacoes(){
+            let produtos = [
+        { nome: "Fone Bluetooth", nota: 4.8 },
+        { nome: "Carregador Paralelo", nota: 2.5 },
+        { nome: "Teclado Sem Fio", nota: 4.2 },
+        { nome: "Cabo USB Pirata", nota: 1.9 }
+      ] 
+
+         let resultado = document.getElementById('res')
+
+         let resultadofinal = filtrarmelhores(produtos)
+
+         resultado.innerText = `melhores produtos: ${resultadofinal} `
+        }
+      </script>
+    
+</body>
+</html>

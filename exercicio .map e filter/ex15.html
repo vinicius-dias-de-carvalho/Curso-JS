@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 2 - Promoção RPG</title>
+    <style>
+        body{
+            background-color: gray;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Preços de RPG com 20% OFF</h1>
+    </header>
+
+    <section>
+        <div>
+            <button onclick="processarpromocao()">Aplicar Cupom</button>
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+    <script>
+        function aplicarcumpomrpg(ap){
+            let aplicar = ap.filter(item => item.categoria === "RPG" ).map(item => item.preco * 0.8)
+
+            return aplicar
+        }
+
+        function processarpromocao(){
+            let jogos = [
+        { nome: "Elden Ring", preco: 200, categoria: "RPG" },
+        { nome: "FIFA 24", preco: 300, categoria: "Esporte" },
+        { nome: "The Witcher 3", preco: 100, categoria: "RPG" },
+        { nome: "Street Fighter 6", preco: 250, categoria: "Luta" }
+             ]
+
+           let resultado = document.getElementById('res')
+
+           let resultadofinal = aplicarcumpomrpg(jogos)
+
+           resultado.innerText = `${resultadofinal}`
+        }
+    </script>
+    
+</body>
+</html>

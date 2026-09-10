@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 1 - Frete Grátis</title>
+    <style>
+        body{
+            background-color: gray;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Produtos com Frete Grátis</h1>
+    </header>
+
+    <section>
+        <div>
+            <button onclick="processarprodutos()">Ver produtos</button>
+            
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+     <script>
+        function filtrarfretegratis(ft){
+        let filtragem = ft.filter(item => item.preco >= 100).map(item => " [FRETE GRÁTIS] "  + item.nome)
+
+        return filtragem
+        }
+
+        function processarprodutos(){
+            let produtos = [
+        { nome: "Teclado Gamer", preco: 150 },
+        { nome: "Mousepad Simples", preco: 30 },
+        { nome: "Headset Surround", preco: 250 },
+        { nome: "Cabo HDMI", preco: 25 }
+         ]
+
+         let resultado = document.getElementById('res')
+
+         let resultadofinal = filtrarfretegratis(produtos)
+
+         resultado.innerText = `${resultadofinal}`
+        }
+     </script>
+    
+</body>
+</html>

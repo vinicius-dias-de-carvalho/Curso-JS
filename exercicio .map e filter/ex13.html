@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 2 - Cashback</title>
+    <style>
+        body{
+            background-color: gray;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Cashback da Categoria Hardware (5%)</h1>
+    </header>
+
+    <section>
+        <div>
+            <button onclick="processarcashback()">Ver Cashback</button>
+        </div>
+        <div id="res"> 
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+     <script>
+        function calcularcashback(cash){
+            let calcular = cash.filter(item =>  item.categoria === "hardware").map(item => item.preco * 0.05)
+
+            return calcular
+        }
+
+        function processarcashback(){
+        let carrinho = [
+        { nome: "Processador i5", preco: 1000, categoria: "hardware" },
+        { nome: "Cadeira Gamer", preco: 800, categoria: "móveis" },
+        { nome: "Placa de Vídeo RX 6600", preco: 1400, categoria: "hardware" },
+        { nome: "Mousepad", preco: 60, categoria: "acessorios" }
+         ]
+
+         let resultado = document.getElementById('res')
+
+         let resultadofinal = calcularcashback(carrinho)
+
+          resultado.innerText = `Valor Cashback: ${resultadofinal}`
+        }
+     </script>
+    
+</body>
+</html>
