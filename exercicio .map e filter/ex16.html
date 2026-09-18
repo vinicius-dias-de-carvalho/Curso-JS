@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 1 - Desconto Teclados</title>
+    <style>
+        body{
+            background-color: gray;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Teclados em Oferta (15% OFF)</h1>
+    </header>
+
+    <section>
+        <div>
+            <button onclick="processaroferta()">Ver Ofertas</button>
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+      <script>
+        function calculardescontoteclado(dc){
+            let desconto = dc.filter(item => item.categoria === "teclados").map(item => item.preco * 0.85)
+
+            return desconto
+        }
+
+        function processaroferta(){
+        let produtos = [
+        { nome: "Teclado Mecânico RGB", preco: 300, categoria: "teclados" },
+        { nome: "Mouse Gamer 16000 DPI", preco: 150, categoria: "mouses" },
+         { nome: "Teclado 60% Compacto", preco: 200, categoria: "teclados" },
+         { nome: "Headset 7.1", preco: 250, categoria: "audio" }
+    ] 
+
+         let resultado = document.getElementById('res')
+
+         let resultadofinal = calculardescontoteclado(produtos)
+
+         resultado.innerText = `${resultadofinal}`
+        }
+      </script>
+    
+</body>
+</html>

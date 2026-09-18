@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>>Exercício 3 - Loja de Jogos</title>
+    <style>
+        body{
+            display:flex;
+            flex-flow: column;
+            background-color: gray;
+            text-align: center;
+        }
+    
+
+        .card-produto {
+            border: 2px solid #2ea44f;
+            padding: 15px;
+            
+           
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            max-width: 220px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Lançamentos de RPG</h1>
+    </header>
+
+    <section>
+        <div>
+            <button onclick="mostrarrpg()">Filtrar RPGs</button>
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+    <script>
+        function gerarcardrpg(lista){
+            let rpg = lista.filter(({categoria})=> categoria === "RPG").map(({nome, 
+            preco}) => `<div class="card-produto">
+                <h3>${nome}</h3>
+                <p>Preço: R$ ${preco}</p></div>` 
+            
+        ).join('')
+
+        return rpg
+        }
+
+        function mostrarrpg(){
+        let jogos = [
+    { nome: "Honkai: Star Rail", categoria: "RPG", preco: 0 },
+    { nome: "EA Sports FC", categoria: "Esportes", preco: 300 },
+    { nome: "Wuthering Waves", categoria: "RPG", preco: 0 },
+    { nome: "Street Fighter 6", categoria: "Luta", preco: 250 }
+    ]
+
+      let resultadofinal = gerarcardrpg(jogos)
+
+      document.getElementById('res').innerHTML = resultadofinal
+        }
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 2 - Alerta de Estoque</title>
+    <style>
+        body{
+            background-color: gray;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Produtos com Estoque Baixo</h1>
+    </header>
+
+    <section>
+        <div>
+            <button onclick="processarinventario()">Ver Alertas</button>
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+      <script>
+        function verificarestoquebaixo(es){
+         let estoque = es.filter(item => item.quantidade < 5).map(item => "[REPORESTOQUE] " + item.nome )
+
+         return estoque
+        }
+
+        function processarinventario(){
+        let inventario = [
+       { nome: "Placa de Vídeo", quantidade: 2 },
+       { nome: "Memória RAM", quantidade: 15 },
+       { nome: "Processador", quantidade: 3 },
+       { nome: "Fonte 500W", quantidade: 8 }
+    ]
+
+       let resultado = document.getElementById('res')
+
+       let resultadofinal = verificarestoquebaixo(inventario)
+
+        resultado.innerText = `${resultadofinal}`
+        }
+
+
+      </script>
+    
+</body>
+</html>

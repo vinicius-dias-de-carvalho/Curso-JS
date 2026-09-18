@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios Cursos</title>
+    <style>
+        body{
+            background-color: gray;
+            text-align: center;
+        }
+        #vitrine{
+         margin: 12px;
+         margin-top: 20px;
+         
+        }
+
+        .card-produto {
+            border: 2px solid #2ea44f;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Cursos de programação</h1>
+    </header>
+
+    <section>
+        <div>
+          <button onclick="mostrarConcluidos()">Ver Cursos</button>  
+        </div>
+        <div id="vitrine">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+     <script>
+        function gerarCertificados(lista){
+            let procura = lista.filter(({concluido})  => concluido === true).map(({nome, horas}) => `<div class="card-produto">
+            <h3>${nome}</h3>
+             <p>${horas}</p> </div>`
+            ).join('')
+
+            return procura
+
+        }
+
+        function mostrarConcluidos(){
+            let cursos = [
+        { nome: "HTML e CSS Basico", horas: 20, concluido: true },
+         { nome: "JavaScript Intermediario", horas: 40, concluido: true },
+        { nome: "React Avançado", horas: 60, concluido: false },
+        { nome: "Node.js Backend", horas: 50, concluido: false }
+    ]
+        let resultadofinal = gerarCertificados(cursos)
+ 
+        document.getElementById('vitrine').innerHTML = resultadofinal
+        
+        }
+     </script>
+    
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cards de Produtos</title>
+    <style>
+        body{
+            background-color: gray;
+            text-align: center;
+            
+        }
+
+        #vitrine{
+          margin-top: 20px;
+          margin-left: 5px ;
+        }
+
+        .card-produto {
+            border: 2px solid #2ea44f;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Produtos Disponíveis</h1>
+    </header>
+
+    <section>
+        <div>
+            <button onclick="renderizarloja()">Carregar Vitrine</button>
+        </div>
+        <div id="vitrine">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+      <script>
+        function gerarcard(lista){
+           let gerar = lista.filter( ({emEstoque}) => emEstoque === true).map(({nome, preco}) => `
+            <div class="card-produto">
+             <h3>${nome}</h3>
+            <p>R$ ${preco}</p>
+            </div>
+            `).join('')
+
+            return gerar
+        }
+
+        function renderizarloja(){
+        let inventario = [
+        { nome: "Teclado Mecânico", preco: 250, emEstoque: true },
+        { nome: "Monitor 144Hz", preco: 900, emEstoque: false },
+        { nome: "Mousepad XXL", preco: 80, emEstoque: true },
+         { nome: "Headset USB", preco: 180, emEstoque: false }
+]       
+        let resultado = gerarcard(inventario)
+        document.getElementById('vitrine').innerHTML = resultado
+
+        
+
+          
+        }
+
+      </script>
+    
+</body>
+</html>

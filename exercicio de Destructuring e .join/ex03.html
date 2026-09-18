@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <style>
+        body{
+            background-color: gray;
+            text-align: center;
+        }
+        #vitrine{
+             margin-top: 20px;
+        }
+
+        .card-produto {
+            border: 2px solid #2ea44f;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Tarefas</h1>
+    </header>
+
+    <section>
+        <div>
+           <button onclick="exibirtarefas()">Exibir</button> 
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+    <script>
+        function gerarconcluidas(lista){
+            let gerar = lista.filter(({feita}) => feita === true).map(({titulo, prioridade}) =>`<div class="card-produto">
+                <h3>${titulo}</h3>
+                <p>Prioridade: ${prioridade}</p>
+            </div>` ).join('')
+
+            return gerar
+                  
+        }
+
+    function exibirtarefas(){
+    let tarefas = [
+    { titulo: "Treinar perna", prioridade: "Alta", feita: true },
+    { titulo: "Estudar JavaScript", prioridade: "Média", feita: true },
+    { titulo: "Comprar ração dos gatos", prioridade: "Alta", feita: false },
+    { titulo: "Lavar o carro", prioridade: "Baixa", feita: false }
+    ]
+       let valorfinal = gerarconcluidas(tarefas)   
+         document.getElementById('res').innerHTML = valorfinal
+        }
+
+                 
+    </script>
+    
+</body>
+</html>

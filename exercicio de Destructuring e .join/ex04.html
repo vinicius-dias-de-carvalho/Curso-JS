@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 1 - Biblioteca de Jogos</title>
+    <style>
+        body{
+            background-color: gray;
+            text-align: center;
+        }
+        #vitrine{
+             margin-top: 20px;
+        }
+
+        .card-produto {
+            border: 2px solid #2ea44f;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+       <h1>Meus Jogos Instala dos</h1>
+    </header>
+
+    <section>
+        <div>
+            <button onclick="mostrarjogo()">Carregar Jogos</button>
+        </div>
+        <div id="res">
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; CursoemVideo</p>
+    </footer>
+    <script>
+        function gerarcardsjogos(lista){
+            let jogos = lista.filter(({instalado}) => instalado === true).map(({titulo,genero}) => `<div class="card-produto">
+                <h3>${titulo}</h3>
+                <p>Gênero: ${genero}</p> 
+                </div>`).join('')
+
+                return jogos
+        }
+
+    function mostrarjogo(){
+        let biblioteca = [
+         { titulo: "Wuthering Waves", genero: "Action RPG", instalado: true },
+        { titulo: "Titan Quest 2", genero: "ARPG", instalado: false },
+         { titulo: "Humanitz", genero: "Sobrevivência", instalado: true },
+        { titulo: "Diablo IV", genero: "ARPG", instalado: false }
+        ]
+
+          let resultadofinal = gerarcardsjogos(biblioteca)
+
+           document.getElementById('res').innerHTML = resultadofinal
+         }
+    </script>
+    
+</body>
+</html>
