@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercício 1 - Loja de Hardware</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #0d1117;
+            color: #c9d1d9;
+        }
+
+        #busca-preco {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #238636;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            background-color: #161b22;
+            color: #fff;
+        }
+
+        #res-placas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .card-placa {
+            border: 1px solid #238636;
+            border-radius: 8px;
+            padding: 15px;
+            width: 220px;
+            background-color: #161b22;
+        }
+
+        .card-placa h3 {
+            margin-top: 0;
+            color: #3fb950;
+        }
+
+        .preco {
+            font-weight: bold;
+            color: #58a6ff;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🖥️ Hardware Zone</h1>
+    
+    <input type="number" id="busca-preco" placeholder="Digite o preço máximo (ex: 2500)...">
+
+    <div id="res-placas"></div>
+
+    <script>
+        let vitrine = [
+        { modelo: "Intel Arc B580", preco: 1800 },
+        { modelo: "RTX 4060", preco: 2200 },
+        { modelo: "RX 6750 XT", preco: 2600 },
+        { modelo: "RTX 4070", preco: 4200 },
+        { modelo: "RX 7600", preco: 1700 }
+        ]
+        function gerarcardpreco(lista){
+            let gerar = lista.map(({modelo, preco})=> `<div class='card-placa'>
+                <h3>${modelo}</h3>
+                <p>valor: ${preco}</p>
+                </div>`).join ('')
+
+                return gerar
+        }
+
+
+         document.getElementById('res-placas').innerHTML = gerarcardpreco(vitrine)
+
+         let buscapreco = document.getElementById('busca-preco')
+
+         buscapreco.addEventListener(`input`,()=>{
+            let texto = Number(buscapreco.value)
+
+          
+            let resultadofinal = buscapreco.value ? vitrine.filter(({preco})=> preco <= texto): vitrine
+
+            document.getElementById('res-placas').innerHTML = gerarcardpreco(resultadofinal)
+         })
+    </script>
+
+</body>
+</html>

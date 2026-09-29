@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercício 2 - Filmes e Séries</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #141414;
+            color: #ffffff;
+        }
+
+        #busca-filme {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #e50914;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            background-color: #1f1f1f;
+            color: #fff;
+        }
+
+        #res-filmes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .card-filme {
+            border: 1px solid #e50914;
+            border-radius: 8px;
+            padding: 15px;
+            width: 220px;
+            background-color: #1f1f1f;
+        }
+
+        .card-filme h3 {
+            margin-top: 0;
+            color: #e50914;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🎬 Catálogo de Filmes</h1>
+    
+    <input type="text" id="busca-filme" placeholder="Buscar por título...">
+
+    <div id="res-filmes"></div>
+
+    <script>
+        let catalogo = [
+        { nome: "Breaking Bad", tipo: "Série" },
+        { nome: "Stranger Things", tipo: "Série" },
+        { nome: "O Chefão", tipo: "Filme" },
+        { nome: "Interstellar", tipo: "Filme" },
+       { nome: "The Office", tipo: "Série" }
+       ]
+        function gerarcardfilme(lista){
+            let filmes = lista.map(({nome, tipo})=> `<div class="card-filme">
+                <h3>${nome}</h3>
+                <p>tipo: ${tipo}</p>
+                </div>`).join('')
+                
+                return filmes
+        }
+
+         document.getElementById('res-filmes').innerHTML = gerarcardfilme(catalogo)
+
+         let buscas = document.getElementById('busca-filme')
+
+          buscas.addEventListener('input', ()=>{
+           let texto = buscas.value.toLowerCase()
+
+           let textobusca = catalogo.filter(({nome}) => nome.toLowerCase().includes(texto))
+
+           document.getElementById('res-filmes').innerHTML = gerarcardfilme(textobusca)
+
+          })
+    </script>
+
+</body>
+</html>

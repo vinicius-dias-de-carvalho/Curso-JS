@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercício 1 - Painel de Cripto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #0f172a;
+            color: #ffffff;
+        }
+
+        #busca-moeda {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #38bdf8;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            background-color: #1e293b;
+            color: #fff;
+        }
+
+        #res-moedas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .card-moeda {
+            border: 1px solid #38bdf8;
+            border-radius: 8px;
+            padding: 15px;
+            width: 220px;
+            background-color: #1e293b;
+        }
+
+        .card-moeda h3 {
+            margin-top: 0;
+            color: #38bdf8;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🪙 Mercado Cripto</h1>
+    
+    <input type="text" id="busca-moeda" placeholder="Buscar por nome ou sigla (ex: BTC)...">
+
+    <div id="res-moedas"></div>
+
+    <script>
+     let mercado = [
+     { nome: "Bitcoin", sigla: "BTC" },
+     { nome: "Ethereum", sigla: "ETH" },
+     { nome: "Solana", sigla: "SOL" },
+     { nome: "Cardano", sigla: "ADA" },
+     { nome: "Polkadot", sigla: "DOT" }
+     ]
+       function gerarcardmoeda(lista){
+        let moeda = lista.map(({nome, sigla})=> `<div class="card-moeda">
+            <h3>${nome}</h3>
+            <p>sigla: ${sigla}</p>
+            </div>`).join('')
+
+            return moeda
+       }
+
+
+       document.getElementById('res-moedas').innerHTML = gerarcardmoeda(mercado)
+
+       let mostrarmoeda = document.getElementById('busca-moeda')
+
+       mostrarmoeda.addEventListener(`input`, ()=> {
+          let textodigitado = mostrarmoeda.value.toLowerCase()
+
+
+        let resultadofinal = mercado.filter(({nome, sigla}) => nome.toLowerCase().includes(textodigitado) || sigla.toLowerCase().includes(textodigitado))
+
+        document.getElementById('res-moedas').innerHTML = gerarcardmoeda(resultadofinal)
+
+       })
+    </script>
+
+</body>
+</html>

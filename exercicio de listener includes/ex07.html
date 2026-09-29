@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercício 2 - AutoPeças</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #18181b;
+            color: #ffffff;
+        }
+
+        #busca-peca {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #f97316;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            background-color: #27272a;
+            color: #fff;
+        }
+
+        #res-pecas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .card-peca {
+            border: 1px solid #f97316;
+            border-radius: 8px;
+            padding: 15px;
+            width: 220px;
+            background-color: #27272a;
+        }
+
+        .card-peca h3 {
+            margin-top: 0;
+            color: #f97316;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🔧 AutoPeças Express</h1>
+    
+    <input type="text" id="busca-peca" placeholder="Buscar por peça ou categoria (ex: Freio)...">
+
+    <div id="res-pecas"></div>
+
+    <script>
+        let estoque = [
+        { peca: "Pastilha de Freio", categoria: "Freios" },
+        { peca: "Filtro de Óleo", categoria: "Motor" },
+        { peca: "Disco de Freio", categoria: "Freios" },
+        { peca: "Vela de Ignição", categoria: "Ignição" },
+        { peca: "Amortecedor Dianteiro", categoria: "Suspensão" }
+      ]
+
+      function gerarcardpeca(lista){
+        let peixe = lista.map(({peca, categoria}) => 
+        `<div class="card-peca">
+            <h3>${peca}</h3>
+            <p> categorias: ${categoria}</p>
+            </div>`).join('')
+
+            return peixe
+      }
+        document.getElementById('res-pecas').innerHTML = gerarcardpeca(estoque)
+
+        let buscapeca = document.getElementById('busca-peca')
+
+
+        buscapeca.addEventListener(`input`,()=> {
+           let textodigitado = buscapeca.value.toLowerCase()
+
+           let resultadofinal = estoque.filter(({peca, categoria})=> peca.toLowerCase().includes(textodigitado) || categoria.toLowerCase().includes(textodigitado))
+
+           document.getElementById('res-pecas').innerHTML = gerarcardpeca(resultadofinal)
+        })
+        
+    </script>
+
+</body>
+</html>

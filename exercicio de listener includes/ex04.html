@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercício 1 - Biblioteca de Jogos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #1a1a2e;
+            color: #ffffff;
+        }
+
+        #busca-jogo {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #e94560;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            background-color: #16213e;
+            color: #fff;
+        }
+
+        #res-jogos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .card-jogo {
+            border: 1px solid #e94560;
+            border-radius: 8px;
+            padding: 15px;
+            width: 220px;
+            background-color: #16213e;
+        }
+
+        .card-jogo h3 {
+            margin-top: 0;
+            color: #e94560;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🎮 Minha Biblioteca de Jogos</h1>
+    
+    <input type="text" id="busca-jogo" placeholder="Buscar jogo pelo título...">
+
+    <div id="res-jogos"></div>
+
+   
+
+</body>
+
+    <script>
+        let biblioteca = [
+       {  titulo: "The Witcher 3", genero: "RPG" },
+       { titulo: "Cyberpunk 2077", genero: "RPG / Sci-Fi" },
+       { titulo: "Elden Ring", genero: "Souls-like" },
+       { titulo: "Hollow Knight", genero: "Metroidvania" },
+       { titulo: "Red Dead Redemption 2", genero: "Ação / Aventura" }
+         ]
+       function gerarcardjogo(lista){
+        let jogo = lista.map(({titulo, genero})=> `<div class="card-jogo">
+            <h3>${titulo}</h3>
+            <p>${genero}</p>
+            </div>`).join('')
+
+            return jogo
+       }
+       
+       document.getElementById('res-jogos').innerHTML = gerarcardjogo(biblioteca)
+       
+       let resultado = document.getElementById('busca-jogo')
+
+       resultado.addEventListener('input', () => { 
+        let texto = resultado.value.toLowerCase()  
+         let jogosfiltrados = biblioteca.filter(({titulo})=> titulo.toLowerCase().includes(texto))
+
+        document.getElementById('res-jogos').innerHTML = gerarcardjogo(jogosfiltrados)
+    })
+       
+    </script>
+</html>

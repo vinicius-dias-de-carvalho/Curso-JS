@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 2 - Busca de Cursos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+
+        #busca-curso {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #28a745;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        #res-cursos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .card-curso {
+            border: 2px solid #28a745;
+            border-radius: 8px;
+            padding: 15px;
+            width: 240px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .card-curso h3 {
+            margin-top: 0;
+            color: #212529;
+        }
+
+        .nivel {
+            display: inline-block;
+            background-color: #e2e3e5;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #383d41;
+        }
+    </style>
+</head>
+<body>
+    <h1>📚 Buscar Cursos da Plataforma</h1>
+
+    <input type="text" id="busca-curso" placeholder="Digite o nome do curso..."> 
+
+    <div id="res-curso">
+
+    </div>
+
+    
+</body>
+
+<script>
+    let cursos = [
+    { titulo: "React e Next.js Completo", nivel: "Avançado" },
+    { titulo: "JavaScript Moderno para Front-End", nivel: "Iniciante" },
+    { titulo: "Node.js e Bancos de Dados", nivel: "Intermediário" },
+    { titulo: "CSS Grid e Flexbox Responsivo", nivel: "Iniciante" },
+    { titulo: "TypeScript do Zero ao Pro", nivel: "Avançado" }
+     ]
+
+        function gerarcardlista(lista){
+         let gerar = lista.map(({titulo, nivel})=> `<div class="card-curso">
+            <h3>${titulo}</h3>
+            <p>Nivel do curso: ${nivel}</p></div>`).join('')
+
+            return gerar
+        }
+         
+        document.getElementById('res-curso').innerHTML = gerarcardlista(cursos) 
+
+        let campobusca = document.getElementById('busca-curso')
+
+        campobusca.addEventListener('input', () => { let textodigitado = campobusca.value.toLowerCase()
+            
+
+           produtosfiltrado = cursos.filter(({titulo}) => titulo.toLowerCase().includes(textodigitado))
+
+           document.getElementById('res-curso').innerHTML = gerarcardlista(produtosfiltrado)
+        })
+
+    </script>
+</html>
