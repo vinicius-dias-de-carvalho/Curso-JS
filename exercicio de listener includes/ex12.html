@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Treino de Busca - Jogos</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #121214;
+      color: #e1e1e6;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #00875f;
+    }
+
+    #campo-busca {
+      width: 100%;
+      max-width: 600px;
+      padding: 14px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #29292e;
+      background-color: #202024;
+      color: #fff;
+      outline: none;
+      margin-bottom: 30px;
+    }
+
+    #campo-busca:focus {
+      border-color: #00875f;
+    }
+
+    #lista-jogos {
+      width: 100%;
+      max-width: 800px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card-jogo {
+      background-color: #202024;
+      border: 1px solid #29292e;
+      border-radius: 8px;
+      padding: 20px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .card-jogo:hover {
+      transform: translateY(-4px);
+      border-color: #00875f;
+    }
+
+    .card-jogo h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    .card-jogo p {
+      font-size: 14px;
+      color: #a8a8b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎮 Catálogo de Jogos</h1>
+  
+  <input type="text" id="campo-busca" placeholder="Digite para buscar um jogo ou gênero...">
+
+  <div id="lista-jogos"></div>
+
+</body>
+<script>
+    let jogos = [
+      { nome: "Path of Exile 2", genero: "RPG" },
+      { nome: "The Division 2", genero: "Ação" },
+      { nome: "No Man's Sky", genero: "Sobrevivência" },
+      { nome: "Witchspire", genero: "Roguelite" },
+      { nome: "Necesse", genero: "Sobrevivência" }
+    ]
+
+    function gerarcardjogo(lista){
+        let jogo = lista.map(({nome, genero})=> 
+            `<div class='card-jogo'>
+             <h3>${nome}</h3>
+             <p>genero: ${genero}</p>   
+                </div>`
+        ).join ('')
+
+        return jogo
+    }
+
+
+    document.getElementById('lista-jogos').innerHTML = gerarcardjogo(jogos)
+
+    let campobusca = document.getElementById('campo-busca')
+
+    campobusca.addEventListener('input', () => {
+        let textodigitado = campobusca.value.toLowerCase()
+
+        let resultadofinal = jogos.filter(({genero,nome})=> nome.toLowerCase().includes(textodigitado) || genero.toLowerCase().includes(textodigitado))
+
+        document.getElementById('lista-jogos').innerHTML = gerarcardjogo(resultadofinal)
+    })
+</script>
+
+</html>

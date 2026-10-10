@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercício 3 - Tech Board</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+
+        #busca-cargo {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #38bdf8;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            background-color: #1e293b;
+            color: #fff;
+        }
+
+        #res-vagas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .card-vaga {
+            border: 1px solid #38bdf8;
+            border-radius: 8px;
+            padding: 15px;
+            width: 240px;
+            background-color: #1e293b;
+        }
+
+        .card-vaga h3 {
+            margin-top: 0;
+            color: #38bdf8;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>💻 Tech Board</h1>
+    
+    <input type="text" id="busca-cargo" placeholder="Buscar por cargo (ex: React, Node, Python)...">
+
+    <div id="res-vagas"></div>
+
+    <script>
+        let vagas = [
+        { cargo: "Desenvolvedor React", nivel: "Pleno" },
+        { cargo: "Engenheiro Node.js", nivel: "Sênior" },
+        { cargo: "Desenvolvedor Frontend Next.js", nivel: "Júnior" },
+        { cargo: "Cientista de Dados Python", nivel: "Pleno" },
+        { cargo: "Desenvolvedor Fullstack PHP", nivel: "Sênior" }
+        ]
+
+        function gerarcardvaga(lista){
+            let vaga = lista.map(({cargo, nivel})=> `<div class='card-vaga'>
+                <h3>${cargo}</h3>
+                <p>nivel: ${nivel}</p>
+                </div>`).join('')
+
+                return vaga
+        }
+
+        document.getElementById('res-vagas').innerHTML = gerarcardvaga(vagas)
+
+        let buscacargo = document.getElementById('busca-cargo')
+
+        buscacargo.addEventListener(`input`, () =>{
+             let texto = buscacargo.value.toLowerCase()
+
+             let resultadofinal = vagas.filter(({cargo, nivel})=> cargo.toLowerCase().includes(texto) || nivel.toLowerCase().includes(texto))
+
+             document.getElementById('res-vagas').innerHTML = gerarcardvaga(resultadofinal)
+        })
+    </script>
+
+</body>
+</html>

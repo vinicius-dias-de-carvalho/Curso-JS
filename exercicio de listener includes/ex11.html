@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercício - Setup Gamer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+
+        .filtros {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        input {
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #22c55e;
+            border-radius: 6px;
+            background-color: #1e293b;
+            color: #fff;
+            box-sizing: border-box;
+        }
+
+        #busca-nome { width: 260px; }
+        #busca-preco { width: 220px; }
+
+        #res-produtos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .card-produto {
+            border: 1px solid #22c55e;
+            border-radius: 8px;
+            padding: 15px;
+            width: 220px;
+            background-color: #1e293b;
+        }
+
+        .card-produto h3 {
+            margin-top: 0;
+            color: #4ade80;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🖥️ Setup Gamer Store</h1>
+    
+    <div class="filtros">
+        <input type="text" id="busca-nome" placeholder="Buscar produto (ex: Teclado)...">
+        <input type="number" id="busca-preco" placeholder="Preço máximo (ex: 300)...">
+    </div>
+
+    <div id="res-produtos"></div>
+
+    <script>
+        let produtos = [
+        { nome: "Teclado Mecânico RGB", preco: 250 },
+        { nome: "Mouse Gamer 16000 DPI", preco: 150 },
+        { nome: "Monitor 144Hz 1ms", preco: 1200 },
+        { nome: "Headset Surround 7.1", preco: 350 },
+        { nome: "Mousepad Extra Grande", preco: 80 }
+        ]
+        function gerarcardproduto(lista){
+            let produto = lista.map(({nome, preco})=> 
+            `<div class='card-produto'>
+                <h3>${nome}</h3>
+                <p>preço: ${preco}</p>
+                </div>`).join('')
+
+             return produto   
+        }
+        document.getElementById('res-produtos').innerHTML = gerarcardproduto(produtos)
+
+        let buscanome = document.getElementById('busca-nome')
+        let buscapreco = document.getElementById('busca-preco')
+
+        buscanome.addEventListener(`input`, ()=> {
+            let texto = buscanome.value.toLowerCase()
+
+            let resultadofinal = produtos.filter(({nome})=> nome.toLowerCase().includes(texto))
+
+            document.getElementById('res-produtos').innerHTML = gerarcardproduto(resultadofinal)
+        })
+
+        buscapreco.addEventListener(`input`, () => {
+            let busca = Number(buscapreco.value)
+
+            let resfinal = buscapreco.value ? produtos.filter(({preco})=> preco <= busca): produtos
+
+            document.getElementById('res-produtos').innerHTML = gerarcardproduto(resfinal)
+        })
+        
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercício 2 - Lançamentos de Games</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #111827;
+            color: #f3f4f6;
+        }
+
+        #busca-ano {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid #a855f7;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            background-color: #1f2937;
+            color: #fff;
+        }
+
+        #res-jogos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .card-jogo {
+            border: 1px solid #a855f7;
+            border-radius: 8px;
+            padding: 15px;
+            width: 220px;
+            background-color: #1f2937;
+        }
+
+        .card-jogo h3 {
+            margin-top: 0;
+            color: #c084fc;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🎮 Game Vault</h1>
+    
+    <input type="number" id="busca-ano" placeholder="Mostrar jogos a partir do ano (ex: 2020)...">
+
+    <div id="res-jogos"></div>
+
+    <script>
+        let biblioteca = [
+        { titulo: "The Witcher 3", ano: 2015 },
+        { titulo: "Cyberpunk 2077", ano: 2020 },
+        { titulo: "Elden Ring", ano: 2022 },
+        { titulo: "God of War Ragnarök", ano: 2022 },
+        { titulo: "GTA V", ano: 2013 }
+         ]
+        function gerarcardjogo(lista){
+            let jogo = lista.map(({titulo, ano}) => 
+                `<div class='card-jogo'>
+                <h3>${titulo}</h3>
+                <p>ano: ${ano}</p>
+                </div>`
+            ).join('')
+
+            return jogo
+        }
+
+
+        document.getElementById('res-jogos').innerHTML = gerarcardjogo(biblioteca)
+
+        let buscaano = document.getElementById('busca-ano')
+
+        buscaano.addEventListener(`input`,()=>{
+            let texto = Number(buscaano.value)
+
+            let resultadofinal = buscaano.value? biblioteca.filter(({ano}) => ano <= texto): biblioteca
+
+            document.getElementById('res-jogos').innerHTML = gerarcardjogo(resultadofinal)
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Treino - Filtro de Peças de PC</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #121214;
+      color: #e1e1e6;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #00875f;
+    }
+
+    .botoes-container {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      background-color: #202024;
+      color: #ffffff;
+      border: 1px solid #29292e;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    button:hover {
+      border-color: #00875f;
+      background-color: #29292e;
+    }
+
+    #grid-setup {
+      width: 100%;
+      max-width: 800px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card-item {
+      background-color: #202024;
+      border: 1px solid #29292e;
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .card-item h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .card-item p {
+      font-size: 14px;
+      color: #a8a8b3;
+      margin-bottom: 8px;
+    }
+
+    .preco {
+      color: #00875f;
+      font-weight: bold;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💻 Peças de Hardware</h1>
+
+  <div class="botoes-container">
+    <button onclick="filtrarCategoria('Todos')">Todos</button>
+    <button onclick="filtrarCategoria('Processador')">Processadores</button>
+    <button onclick="filtrarCategoria('Placa de Vídeo')">Placas de Vídeo</button>
+    <button onclick="filtrarCategoria('Periféricos')">Periféricos</button>
+  </div>
+
+  <div id="grid-setup"></div>
+
+  <script>
+    // 1. DADOS
+    let pecas = [
+      { nome: "Ryzen 5 5600", categoria: "Processador", preco: 850 },
+      { nome: "Intel Arc B580", categoria: "Placa de Vídeo", preco: 1800 },
+      { nome: "RTX 4060 8gb", categoria: "Placa de Vídeo", preco: 2100 },
+      { nome: "Ryzen 7 5700X3D", categoria: "Processador", preco: 1400 },
+      { nome: "Teclado Mecânico", categoria: "Periféricos", preco: 250 },
+      { nome: "Mouse Gamer", categoria: "Periféricos", preco: 180 }
+    ];
+    
+
+    function gerarcard(lista){
+        let container = lista.map(({nome, categoria, preco})=>`
+        <div class="card-item">
+            <h3>${nome}</h3>
+            <p>Categoria: ${categoria}</p>
+            <spam class="preco">${preco}</spam>
+            </div>`).join('')
+
+            return container
+    }
+     document.getElementById('grid-setup').innerHTML = gerarcard(pecas)
+
+    function filtrarCategoria(categoriadesejada){
+        if (categoriadesejada === 'Todos'){
+            document.getElementById('grid-setup').innerHTML = gerarcard(pecas)
+        }else{
+            let filtro = pecas.filter(({categoria})=> categoria === categoriadesejada)
+
+            document.getElementById('grid-setup').innerHTML = gerarcard(filtro)
+        }
+    }
+    </script>
+
+</body>
+
+</html>
