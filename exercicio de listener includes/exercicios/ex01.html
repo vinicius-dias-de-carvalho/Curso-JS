@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+body {
+  background-color: #121214;
+  color: #e1e1e6;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.controles {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  max-width: 700px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+#campo-busca {
+  flex: 1;
+  min-width: 200px;
+  padding: 12px 14px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #29292e;
+  background-color: #202024;
+  color: #fff;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+#campo-busca:focus {
+  border-color: #00875f;
+}
+
+button {
+  background-color: #202024;
+  color: #fff;
+  border: 1px solid #29292e;
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  border-color: #00875f;
+  background-color: #29292e;
+}
+
+p {
+  margin-bottom: 20px;
+  color: #a8a8b3;
+}
+
+#contador {
+  color: #00875f;
+  font-weight: bold;
+}
+
+#lista-jogos {
+  width: 100%;
+  max-width: 700px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.card-jogo {
+  background-color: #202024;
+  border: 1px solid #29292e;
+  border-radius: 8px;
+  padding: 18px;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.card-jogo:hover {
+  transform: translateY(-4px);
+  border-color: #00875f;
+}
+
+.card-jogo h3 {
+  font-size: 17px;
+  margin-bottom: 6px;
+  color: #fff;
+}
+
+.card-jogo p {
+  font-size: 14px;
+  margin-bottom: 0;
+  color: #a8a8b3;
+}
+      
+    </style>
+</head>
+<body>
+    <input type="text" id="campo-busca" placeholder="Buscar jogo...">
+    <button onclick="ordenar('az')">A-Z</button>
+    <button onclick="ordenar('za')">Z-A</button>
+    <p>Jogos na tela: <span id="contador">0</span></p>
+    <div id="lista-jogos"></div>
+</body>
+<script>
+    let jogos = [
+    { id: 1, nome: "Path of Exile 2", categoria: "RPG" },
+    { id: 2, nome: "The Division 2", categoria: "Ação" },
+    { id: 3, nome: "No Man's Sky", categoria: "Sobrevivência" },
+    { id: 4, nome: "Witchspire", categoria: "Roguelite" },
+    { id: 5, nome: "Necesse", categoria: "Sobrevivência" }
+    ]
+     
+    let jg = [...jogos]
+    let order = ''
+   
+    function gerarcard(lista){
+        let card = lista.map(({id, nome, categoria})=> `
+             <div class='card-jogo'>
+            <h3>${nome}</h3>
+            <p>Categoria: ${categoria}</p>
+            <span class="jogo">ID: ${id}</span>
+            </div>`).join('')
+          
+            document.getElementById('contador').textContent = lista.length
+
+            return card
+
+    }
+
+     document.getElementById('lista-jogos').innerHTML = gerarcard(jogos)
+
+     let campobusca = document.getElementById('campo-busca')
+
+     campobusca.addEventListener('input', () => {
+        let textodigitado = campobusca.value.toLowerCase()
+        
+        let resultadofinal = jogos.filter(({nome, categoria})=> nome.toLowerCase().includes(textodigitado) || categoria.toLowerCase().includes(textodigitado))
+        jg = resultadofinal
+
+        if(order === 'az'){
+          resultadofinal.sort((a,z) => a.nome.localeCompare(z.nome))
+        }else if(order === 'za'){
+          resultadofinal.sort((a,z)=> z.nome.localeCompare(a.nome))
+        }
+        document.getElementById('lista-jogos').innerHTML = gerarcard(resultadofinal)
+     })
+   
+     
+     function ordenar(tipo){
+      let listacopia = [... jg]  
+      
+      order = tipo
+      
+      if(tipo === "az" ){
+        listacopia.sort((a,z)=> a.nome.localeCompare(z.nome))
+       
+        
+      }else{
+        listacopia.sort((a,z)=> z.nome.localeCompare(a.nome))
+        
+      }
+      jg = listacopia 
+      
+        document.getElementById('lista-jogos').innerHTML = gerarcard(listacopia)
+
+        
+        
+     }
+    
+</script>
+</html>
