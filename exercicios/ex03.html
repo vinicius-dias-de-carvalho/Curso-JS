@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(to right, orange, black);
+            text-align: center;
+        }
+      .card-produto{
+      
+         background-color: black;
+         color: white;
+         border: 1px solid rgb(78, 76, 76);
+         border-radius: 8px;
+         padding: 18px;
+      }
+
+      #resultado-lista{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+        gap: 16px;
+      }
+      button{
+       background-color: black;
+       color: white;
+       border: 1px solid rgb(75, 70, 70);
+       padding: 12px 20px;
+       border-radius: 8px;
+       margin: 12px;
+       translate: 0.3s;
+
+      }
+     #produto{
+       padding: 12px;
+     }
+
+    .card-produto button{
+        background-color: #3b82f6;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        margin-right: 8px;
+        border-radius: 6px;
+        cursor: pointer;
+         margin-bottom: 12px;
+    }
+     button:hover{
+        background-color: rgb(43, 42, 42);
+       
+      }
+
+      .card-produto p {
+        font-size: 14px;
+        margin-bottom: 0;
+        color: white;
+      }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ordenar produtos</h1>
+    </header>
+
+    <div>
+        
+        <button onclick="ordernar('az')">A-Z</button>
+         <button onclick="ordernar('za')">Z-A</button>
+         
+         <div id="produto">Produto na tela: <span id="contador">0</span></div>
+         
+         <div id="produto">carrinho:<span id="adicionar">0</span></div>
+         <div>Valor: <span id="total-carrinho">0</span></div>
+    </div>
+    <div id="resultado-lista">
+
+    </div>
+    
+    <script>
+        let pecas = [
+       { nome: "Ryzen 5 5600", id:"16", categoria:  "Processador", preco: 850 },
+       { nome: "Intel Arc B580", id:"35", categoria: "Placa de Vídeo", preco: 1800 },
+       { nome: "RTX 4060 8gb", id:"22", categoria: "Placa de Vídeo", preco: 2100 },
+       { nome: "Ryzen 7 5700X3D", id:"52", categoria: "Processador", preco: 1400 },
+       { nome: "Teclado Mecânico", id:"12", categoria: "Periféricos", preco: 250 },
+       { nome: "Mouse Gamer", id:"15", categoria: "Periféricos", preco: 180 }
+        ]
+         let carrinho = []
+        produtossr = [... pecas]
+
+        function gerarcard(lista){
+            let gerar = lista.map(({nome, id, categoria, preco})=> `<div class="card-produto">
+                <h3>${nome}</h3>
+                <p>${categoria}</p>
+                <p>id: ${id}</p>
+                <p>R$: ${preco}</p>
+                <button onclick="adicionarcarrinho(${id})">Adicionar ao carrinho </button>
+                
+                </div>`).join('')
+
+                return gerar
+        }
+
+        document.getElementById('resultado-lista').innerHTML = gerarcard(pecas)
+        
+       
+       function ordernar(tipo){
+
+        let psr = [... produtossr]
+  
+        if(tipo === 'az'){
+         psr.sort((a,z)=> a.nome.localeCompare(z.nome))
+        }else{
+            psr.sort((a,z)=> z.nome.localeCompare(a.nome))
+        }
+        document.getElementById('resultado-lista').innerHTML = gerarcard(psr)
+        }
+        
+        function adicionarcarrinho(idproduto){
+         let itemencontrado = pecas.find(p => p.id == idproduto )
+         carrinho.push(itemencontrado)
+
+         document.getElementById('adicionar').innerHTML = carrinho.length
+
+         let total = carrinho.reduce((acumulador,item)=> acumulador + item.preco, 0);
+
+         document.getElementById('total-carrinho').innerText = total
+         
+        }
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechStore - Exercício de Prática</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #0f172a;
+      color: #f8fafc;
+      padding: 20px;
+    }
+
+    header {
+      max-width: 1100px;
+      margin: 0 auto 30px auto;
+      padding: 20px;
+      background-color: #1e293b;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      color: #38bdf8;
+    }
+
+    .painel-carrinho {
+      display: flex;
+      gap: 20px;
+      background-color: #0f172a;
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+    }
+
+    .info-box {
+      font-size: 0.95rem;
+    }
+
+    .info-box span {
+      font-weight: bold;
+      color: #4ade80;
+    }
+
+    .controles {
+      max-width: 1100px;
+      margin: 0 auto 20px auto;
+      display: flex;
+      gap: 10px;
+    }
+
+    button.btn-filtro {
+      background-color: #334155;
+      color: #f8fafc;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    button.btn-filtro:hover {
+      background-color: #475569;
+    }
+
+    #vitrine {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background-color: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .card .categoria {
+      font-size: 0.85rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .card .preco {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #38bdf8;
+      margin-bottom: 15px;
+    }
+
+    .btn-comprar {
+      background-color: #0284c7;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-comprar:hover {
+      background-color: #0369a1;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>TechStore 🛠️</h1>
+    <div class="painel-carrinho">
+      <div class="info-box">Itens no Carrinho: <span id="qtd-carrinho">0</span></div>
+      <div class="info-box">Total: R$ <span id="total-carrinho">0</span></div>
+    </div>
+  </header>
+
+  <div class="controles">
+    <button class="btn-filtro" onclick="ordenarProdutos('az')">Nome (A-Z)</button>
+    <button class="btn-filtro" onclick="ordenarProdutos('za')">Nome (Z-A)</button>
+    <button class="btn-filtro" onclick="ordenarProdutos('menor-preco')">Menor Preço</button>
+  </div>
+
+  <main id="vitrine">
+    <!-- Os cards serão injetados aqui via JS -->
+  </main>
+
+  <script>
+    // --- DADOS INICIAIS ---
+    const produtos = [
+      { id: "101", nome: "Teclado Mecânico RGB", categoria: "Periféricos", preco: 350 },
+      { id: "102", nome: "Mouse Wireless 16000 DPI", categoria: "Periféricos", preco: 220 },
+      { id: "103", nome: "Monitor 144Hz IPS", categoria: "Monitores", preco: 1250 },
+      { id: "104", nome: "Headset 7.1 Surround", categoria: "Áudio", preco: 410 },
+      { id: "105", nome: "Mousepad Extra Large", categoria: "Acessórios", preco: 90 },
+      { id: "106", nome: "Webcam Full HD 60fps", categoria: "Acessórios", preco: 310 }
+    ];
+
+    let carrinho = [];
+     let srs = [... produtos]
+    function gerarcard(lista){
+        let gerar = lista.map(({nome, id, categoria, preco})=> `<div class="card">
+            <h3>${nome}</h3>
+            <p>${categoria}</p>
+            <span>R$: ${preco}</span>
+            <button onclick="adicionarcarrinho(${id})">Adicionar ao Carrinho</button>
+            </div>`).join('')
+            
+            return gerar
+    }
+
+    document.getElementById('vitrine').innerHTML = gerarcard(produtos)
+    
+    function ordenarProdutos(tipo){
+     let psr = [... srs]
+     
+     if(tipo === 'az'){
+        psr.sort((a,z)=> a.nome.localeCompare(z.nome))
+     }else if(tipo === 'menor-preco'){
+       psr.sort((a,b)=>  a.preco - b.preco )
+     }else{
+        psr.sort((a,z) => z.nome.localeCompare(a.nome))
+     }
+
+     document.getElementById('vitrine').innerHTML = gerarcard(psr)
+    }
+
+    function adicionarcarrinho(idprodutos){
+      let itemencontrado = produtos.find(p => p.id == idprodutos )
+      carrinho.push(itemencontrado)
+      
+      document.getElementById('qtd-carrinho').innerText = carrinho.length
+
+      let total = carrinho.reduce((acumulador, item)=> acumulador + item.preco, 0 ) 
+
+      document.getElementById('total-carrinho').textContent = total
+    }
+
+    
+  </script>
+</body>
+</html>

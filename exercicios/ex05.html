@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dev Quest Log - Prática de JavaScript</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #090d16;
+      color: #f1f5f9;
+      padding: 30px 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 100%);
+      padding: 25px;
+      border-radius: 14px;
+      border: 1px solid #312e81;
+      margin-bottom: 25px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      color: #818cf8;
+      margin-bottom: 5px;
+    }
+
+    p.sub {
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+
+    .painel-controles {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 12px 18px;
+      background-color: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      color: #f8fafc;
+      font-size: 1rem;
+      outline: none;
+      transition: border 0.2s;
+    }
+
+    .search-box input:focus {
+      border-color: #6366f1;
+    }
+
+    .filtros {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button.btn-filtro {
+      background-color: #1e293b;
+      color: #cbd5e1;
+      border: 1px solid #334155;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    button.btn-filtro:hover, button.btn-filtro.ativo {
+      background-color: #6366f1;
+      color: white;
+      border-color: #6366f1;
+    }
+
+    #lista-quests {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .quest-card {
+      background-color: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 10px;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: transform 0.2s;
+    }
+
+    .quest-card:hover {
+      transform: translateX(4px);
+    }
+
+    .quest-info h3 {
+      font-size: 1.1rem;
+      margin-bottom: 4px;
+    }
+
+    .quest-info span {
+      font-size: 0.8rem;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .badge-frontend { background-color: #0369a1; color: #bae6fd; }
+    .badge-backend { background-color: #15803d; color: #dcfce7; }
+    .badge-design { background-color: #7e22ce; color: #f3e8ff; }
+
+    .status-badge {
+      font-size: 0.85rem;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    .status-pendente { background-color: #854d0e; color: #fef08a; }
+    .status-concluido { background-color: #166534; color: #bbf7d0; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Dev Quest Log ⚡</h1>
+      <p class="sub">Gerencie suas tarefas e domine o poder do `.filter()` e `.map()`</p>
+    </header>
+
+    <div class="painel-controles">
+      <div class="search-box">
+        <input type="text" id="input-busca" placeholder="Buscar quest por nome..." oninput="filtrarPorTexto()">
+      </div>
+      <div class="filtros">
+        <button class="btn-filtro ativo" onclick="filtrarCategoria('todas', event)">Todas</button>
+        <button class="btn-filtro" onclick="filtrarCategoria('frontend', event)">Front-End</button>
+        <button class="btn-filtro" onclick="filtrarCategoria('backend', event)">Back-End</button>
+        <button class="btn-filtro" onclick="filtrarCategoria('design', event)">Design</button>
+      <button class="btn-filtro" id="btn-ordenar">Ordenar A-Z 🔤</button>
+     
+      </div>
+    </div>
+
+    <div id="lista-quests">
+      <!-- As quests serão injetadas aqui via JS -->
+    </div>
+  </div>
+
+  <script>
+    // --- DADOS INICIAIS ---
+    const quests = [
+      { id: 1, titulo: "Criar Landing Page Responsiva com CSS Grid", categoria: "frontend", status: "concluido" },
+      { id: 2, titulo: "Ajustar lógica do .reduce() no carrinho de compras", categoria: "frontend", status: "pendente" },
+      { id: 3, titulo: "Configurar banco de dados relacional e conexões", categoria: "backend", status: "pendente" },
+      { id: 4, titulo: "Desenhar identidade visual e paleta de cores", categoria: "design", status: "concluido" },
+      { id: 5, titulo: "Estudar manipulação de DOM e Event Listeners", categoria: "frontend", status: "pendente" },
+      { id: 6, titulo: "Criar rota de autenticação de usuários", categoria: "backend", status: "concluido" }
+     
+     
+    ];
+    carrinho = []
+    let filtragem = [... quests]
+    function gerarcard(lista){
+        let gerar = lista.map(({id, titulo, categoria, status})=> `<div class="quest-card">
+            <h3>${titulo}</h3>
+            <p>${categoria}</p>
+            <p> ID:${id}</p>
+            <span>${status}</span>
+            </div>
+        `).join('')
+        
+        return gerar
+    }
+    
+    document.getElementById('lista-quests').innerHTML = gerarcard(quests)
+     
+
+
+    let ipbusca = document.getElementById('input-busca')
+    botaoordenar = document.getElementById('btn-ordenar')   
+
+    ipbusca.addEventListener("input", () => {
+        let textodigitado = ipbusca.value.toLowerCase()
+
+        let resultadofinal = quests.filter(({titulo})=> titulo.toLowerCase().includes(textodigitado))
+
+        document.getElementById('lista-quests').innerHTML = gerarcard(resultadofinal)
+    })
+
+   function filtrarCategoria(cat){
+        let listafiltrada;
+
+        if(cat === "todas"){
+          listafiltrada = quests
+        }else{
+          listafiltrada = quests.filter(quest => quest.categoria === cat)
+
+         
+        }
+         document.getElementById('lista-quests').innerHTML = gerarcard(listafiltrada)
+    }
+   
+    botaoordenar.addEventListener('click', () =>{
+      let listaordenada= filtragem.sort((a,b)=> a.titulo.localeCompare(b.titulo))
+      
+      document.getElementById('lista-quests').innerHTML = gerarcard(listaordenada)
+    })
+
+    
+  </script>
+</body>
+</html>

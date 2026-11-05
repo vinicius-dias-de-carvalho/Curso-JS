@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev Quest Log</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #121212; color: #fff; padding: 20px; }
+        .controles { margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
+        input, button, select { padding: 8px 12px; border-radius: 4px; border: none; cursor: pointer; }
+        input, select { background: #222; color: #fff; border: 1px solid #444; }
+        button { background: #3b82f6; color: white; font-weight: bold; }
+        button:hover { background: #2563eb; }
+        #lista-quests { display: flex; flex-direction: column; gap: 10px; }
+        .quest-card { background: #1e1e1e; padding: 6px; border-radius: 6px; border-left: 4px solid #3b82f6;
+        margin: 30px;}
+    </style>
+</head>
+<body>
+
+    <h1>Dev Quest Log 🚀</h1>
+
+    <!-- Controles (Busca, Filtros e Ordenação) -->
+    <div class="controles">
+        <input type="text" id="input-busca" placeholder="Buscar quest...">
+        <button onclick="filtrarCategoria('todas')">Todas</button>
+        <button onclick="filtrarCategoria('frontend')">Frontend</button>
+        <button onclick="filtrarCategoria('backend')">Backend</button>
+        <button onclick="filtrarCategoria('design')">Design</button>
+        
+        <button id="btn-ordenar">Ordenar A-Z 🔤</button>
+    </div>
+
+    <!-- Adicionar Nova Quest -->
+    <div class="controles">
+        <input type="text" id="input-nova-quest" placeholder="Nome da nova quest...">
+        <select id="select-nova-categoria">
+            <option value="frontend">Frontend</option>
+            <option value="backend">Backend</option>
+            <option value="design">Design</option>
+        </select>
+        <button id="btn-adicionar">Adicionar Quest ➕</button>
+    </div>
+
+    <!-- Onde os cards aparecem -->
+    <div id="lista-quests"></div>
+
+    <script>
+        // --- DADOS INICIAIS ---
+        const quests = [
+            { id: 1, titulo: "Criar Landing Page Responsiva com CSS Grid", categoria: "frontend", status: "concluido" },
+            { id: 2, titulo: "Ajustar lógica do .reduce() no carrinho de compras", categoria: "frontend", status: "pendente" },
+            { id: 3, titulo: "Configurar banco de dados relacional e conexões", categoria: "backend", status: "pendente" },
+            { id: 4, titulo: "Desenhar identidade visual e paleta de cores", categoria: "design", status: "concluido" },
+            { id: 5, titulo: "Estudar manipulação de DOM e Event Listeners", categoria: "frontend", status: "pendente" },
+            { id: 6, titulo: "Criar rota de autenticação de usuários", categoria: "backend", status: "concluido" }
+        ];
+        
+        let orderaz = [...quests];
+
+       function gerarcard(lista){
+        let gerar = lista.map(({titulo, id, categoria, status})=>`<div class="quest-card">
+            <h3>${titulo}</h3>
+            <p>${categoria}</p>
+            <p>ID :${id}</p>
+            <span>${status}</span>
+
+            </div>
+        `).join('')
+           
+           return gerar
+       }
+
+      document.getElementById('lista-quests').innerHTML = gerarcard(quests)
+      
+       let buscaquests = document.getElementById('input-busca')
+       let botaoordenar = document.getElementById('btn-ordenar')
+       let botaoadicionar = document.getElementById('btn-adicionar')
+       
+
+
+      buscaquests.addEventListener('input', ()=> {
+        textodigitado = buscaquests.value.toLowerCase()
+
+        let resultadofinal = quests.filter(({titulo, categoria})=> titulo.toLowerCase().includes(textodigitado) || categoria.toLowerCase().includes(textodigitado))
+
+        document.getElementById('lista-quests').innerHTML = gerarcard(resultadofinal)
+      })
+
+      function filtrarCategoria(cat){
+       let listafiltrada;
+        if(cat === 'todas'){
+            listafiltrada = quests
+        }else{
+            listafiltrada = quests.filter((quest => quest.categoria === cat))
+        }
+
+        document.getElementById('lista-quests').innerHTML = gerarcard(listafiltrada)
+    }
+
+    botaoordenar.addEventListener('click', () => {
+      
+
+       let resultadofinal = orderaz.sort((a,b)=> a.titulo.localeCompare(b.titulo))
+
+        document.getElementById('lista-quests').innerHTML = gerarcard(resultadofinal)
+
+    })
+
+    botaoadicionar.addEventListener('click', ()=> {
+       let textodoinput = document.getElementById('input-nova-quest').value
+       
+       let categoriaescolhida = document.getElementById('select-nova-categoria').value
+
+       let novaquest = {
+         id: Date.now(),
+         titulo: textodoinput,
+         categoria: categoriaescolhida,
+         status: 'pendente'
+
+       } 
+       quests.push(novaquest)
+
+       document.getElementById('lista-quests').innerHTML = gerarcard(quests)
+    })
+    </script>
+</body>
+</html>

@@ -64,8 +64,7 @@ function filtrarprodutos(categoriadesejada){
       document.getElementById('grid-produtos').innerHTML = renderizarprodutos(listafiltrada)
    }
    
-   function atualizartotal(){
-   }
+   
 
 
 }
