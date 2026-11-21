@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mini-desafio</title>
+
+    <style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  body {
+    background-color: #121214;
+    color: #e1e1e6;
+    padding: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  /* Área do topo (Input e Botão de Adicionar) */
+  .topo {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  input[type="text"] {
+    flex: 1;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid #323238;
+    background-color: #202024;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+  }
+
+  input[type="text"]:focus {
+    border-color: #8257e5;
+  }
+
+  button {
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #8257e5;
+    color: white;
+    transition: 0.2s;
+  }
+
+  button:hover {
+    filter: brightness(1.15);
+  }
+
+  /* Contadores */
+  .info {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+    color: #a8a8b3;
+    font-size: 0.95rem;
+  }
+
+  /* Grade dos Cards */
+  #res {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  /* Estilo de cada Card */
+  #res > div {
+    background-color: #202024;
+    border: 1px solid #323238;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #res h3 {
+    font-size: 1.1rem;
+    color: #ffffff;
+  }
+
+  #res p {
+    font-size: 0.9rem;
+    color: #a8a8b3;
+    text-transform: capitalize;
+  }
+
+  /* Botões dentro do Card */
+  #res button:first-of-type {
+    background-color: #04d361;
+    color: #121214;
+    margin-top: auto;
+  }
+
+  #res button:last-of-type {
+    background-color: #f75a68;
+    color: white;
+  }
+</style>
+</head>
+<body>
+    <input type="text" name="adicionar" id="adicionar" >
+
+    <button onclick="adicionarquest()">Adicionar Quest</button>
+
+    <p id="adicionar-quests">Total: 0</p>
+    <p id="contador-quests">Total: 0</p>
+    <div id="res"></div>
+</body>
+
+<script>
+ let quests = [
+            { id: 1, titulo: "Criar Landing Page Responsiva com CSS Grid", categoria: "frontend", status: "concluido" },
+            { id: 2, titulo: "Ajustar lógica do .reduce() no carrinho de compras", categoria: "frontend", status: "pendente" },
+            { id: 3, titulo: "Configurar banco de dados relacional e conexões", categoria: "backend", status: "pendente" },
+            { id: 4, titulo: "Desenhar identidade visual e paleta de cores", categoria: "design", status: "concluido" },
+            { id: 5, titulo: "Estudar manipulação de DOM e Event Listeners", categoria: "frontend", status: "pendente" },
+            { id: 6, titulo: "Criar rota de autenticação de usuários", categoria: "backend", status: "concluido" }
+        ];
+
+
+    function gerarcard(lista){
+        let gerar = lista.map(({id, titulo, categoria, status,})=> `
+        <div>
+          <h3>${titulo}</h3>
+          <p>${categoria}</p>
+          <p>${status}</p>
+          <button onclick="concluirquests(${id})">adicionar total</button>
+          <button onclick="excluirquest(${id})</button>">Excluir quests
+
+            </div>`).join('')
+
+            document.getElementById('contador-quests').textContent = lista.length
+
+            return gerar
+    }
+
+      
+
+       document.getElementById('res').innerHTML = gerarcard(quests)
+        let adicionarquests = document.getElementById('adicionar-quests')
+        
+        
+
+
+
+       function concluirquests(id){
+        
+        let quest = quests.find(p => p.id == id)
+         quest.status = "concluido"
+
+        document.getElementById('res').innerHTML = gerarcard(quests)
+        
+       }
+
+       function excluirquest(id){
+       
+        let filtrar = quests.filter((p)=> p.id !== id) 
+        
+        document.getElementById('res').innerHTML = gerarcard(filtrar)
+       }
+
+       function adicionarquest(){
+     let adicionarq = document.getElementById('adicionar').value 
+        
+       if(adicionarq !== ""){  
+        let quest = {
+         id: Date.now(),
+         titulo: adicionarq,
+         categoria: "Front End",
+         status: "Pendente",
+          
+        }}else{
+          alert("Preencha a área em braco!")
+        }
+        
+        quests.push(quest)
+        
+        
+        
+        document.getElementById('res').innerHTML = gerarcard(quests)
+        document.getElementById('adicionar').value = ""
+        }
+        
+</script>
+</html>

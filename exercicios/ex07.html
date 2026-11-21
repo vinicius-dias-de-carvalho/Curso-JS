@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hades consoles</title>
+    <style>* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #282864;
+  color: #f4f4f5;
+  padding: 20px;
+  line-height: 1.5;
+}
+
+ #res {
+    
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 12px;
+   
+  
+}
+#res > div{
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    gap: 8 ;
+    max-width: 300px;
+    width: 100%;
+    padding: 12px;
+    margin: 8px;
+
+}
+h1 {
+  margin-bottom: 16px;
+}
+
+input,
+button {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #2e2e38;
+  background-color: #1e1e24;
+  color: #f4f4f5;
+  margin-right: 8px;
+  margin-bottom: 12px;
+}
+
+button {
+  cursor: pointer;
+}
+
+
+</style>
+</head>
+<body>
+    <h1>Hades consoles e perifericos</h1>
+    <p id="contador-produto">Contagem de produtos: 0</p>
+
+
+    <input type="text" id="buscar-produto">
+     <button id="btn-az">Organizar A-Z</button>
+     <button id="btn-za">Organizar Z-A</button>
+    
+     
+     <div id="res"></div>
+</body>
+<script>
+   let produtos = [
+  { id: 1, nome: "PlayStation 5 Slim 1TB", categoria: "Console", preco: 3799.90 },
+  { id: 2, nome: "Xbox Series S 512GB", categoria: "Console", preco: 2699.00 },
+  { id: 3, nome: "Nintendo Switch OLED", categoria: "Console", preco: 2199.90 },
+  { id: 4, nome: "Controle DualSense Branco", categoria: "Periférico", preco: 449.90 },
+  { id: 5, nome: "Controle sem Fio Xbox Carbon Black", categoria: "Periférico", preco: 429.00 },
+  { id: 6, nome: "Headset Gamer Sem Fio Pulse 3D", categoria: "Periférico", preco: 599.90 },
+  { id: 7, nome: "Base de Carregamento DualSense", categoria: "Periférico", preco: 199.90 },
+  { id: 8, nome: "Par de Controles Joy-Con Neon", categoria: "Periférico", preco: 499.00 },
+  { id: 9, nome: "Volante Logitech G29 Driving Force", categoria: "Periférico", preco: 1899.90 },
+  { id: 10, nome: "Cartão de Memória microSD 256GB", categoria: "Periférico", preco: 179.90 }
+];
+
+ 
+
+
+    function gerarcard(lista){
+        let gerar = lista.map(({nome, id, categoria, preco})=> `<div class="lista-produtos">
+         <h3>${nome}</h3>
+         <p>${categoria}</p>
+         <p>${preco}</p>
+         <button onclick="organizar(${id})">Adicionar carrinho</button>   
+            </div>`).join('')
+
+            document.getElementById('contador-produto').textContent = lista.length
+
+            return gerar
+    }
+
+     document.getElementById('res').innerHTML = gerarcard(produtos)
+     let  buscaprodutos = document.getElementById('buscar-produto')
+
+     let btaz = document.getElementById('btn-az')
+     let btza = document.getElementById('btn-za')
+  
+   
+     buscaprodutos.addEventListener('input', ()=> {
+        textodigitado = buscaprodutos.value.toLowerCase()
+
+
+        let resultado = produtos.filter(({nome, categoria})=> nome.toLowerCase().includes(textodigitado) || categoria.toLowerCase().includes(textodigitado))
+
+        document.getElementById('res').innerHTML = gerarcard(resultado)
+     })
+
+
+
+
+
+
+      btaz.addEventListener('click', ()=> {
+       pro  = [...produtos]
+
+       let resultadofinal = pro.sort((a,b)=> a.nome.localeCompare(b.nome))
+
+       document.getElementById('res').innerHTML = gerarcard(resultadofinal)
+      })
+
+      btza.addEventListener('click', ()=> {
+        pro2 = [...produtos]
+
+        let resultadof = pro2.sort((a,b)=> b.nome.localeCompare(a.nome))
+
+        document.getElementById('res').innerHTML = gerarcard(resultadof)
+      })
+</script>
+</html>
