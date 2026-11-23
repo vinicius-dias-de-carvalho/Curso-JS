@@ -58,11 +58,18 @@ button {
 }
 
 
+
 </style>
 </head>
 <body>
     <h1>Hades consoles e perifericos</h1>
-    <p id="contador-produto">Contagem de produtos: 0</p>
+    <div><p id="contador-produto">Contagem de produtos: 0</p>
+   
+      <p id="contidade-carrinho">carrinho: 0</p>
+    
+    <p id="adicionar-valor">Valor da compra: 0</p>
+    </div>
+
 
 
     <input type="text" id="buscar-produto">
@@ -104,7 +111,7 @@ button {
 
      document.getElementById('res').innerHTML = gerarcard(produtos)
      let  buscaprodutos = document.getElementById('buscar-produto')
-
+    
      let btaz = document.getElementById('btn-az')
      let btza = document.getElementById('btn-za')
   
@@ -138,5 +145,23 @@ button {
 
         document.getElementById('res').innerHTML = gerarcard(resultadof)
       })
+     
+      let carrinho = []
+      function organizar(id){
+        
+         let valor  = produtos.find((item)=> item.id === id)
+         let ver = carrinho.find((item)=> item.id === id)
+         if(ver){
+         ver.quantidade++
+         }else{
+          carrinho.push({
+            ...valor,
+            quantidade: 1
+          })
+         }
+       
+         document.getElementById('contidade-carrinho').textContent = carrinho.reduce((total, item)=> total + item.quantidade, 0)
+      }
+
 </script>
 </html>
